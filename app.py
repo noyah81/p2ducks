@@ -6,7 +6,7 @@ from blueprint import blueprint
 
 
 app = Flask(__name__)
-app.register_blueprint(blueprint)
+# app.register_blueprint(blueprint)
 
 # Set the SQL database
 dbURI = 'sqlite:///models/myDB.db'
@@ -30,9 +30,9 @@ def createTweet():
     return render_template("createTweet.html")
 
 
-@app.route('/explore', methods=['POST', 'GET'])
-def explore():
-    return render_template("explore.html")
+@app.route('/liked', methods=['POST', 'GET'])
+def liked():
+    return render_template("liked.html")
 
 
 @app.route("/<usr>")
