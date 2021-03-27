@@ -1,5 +1,7 @@
 # P2 Ducks Project
+
 ![twitter wallpaper](static/assets/twitter.jpeg)
+
 Welcome to p2-ducks!
 Sarah Xie, Maggie Killada, Akhil Genneri, Nivu Rethnakar, Noya Hafiz
 Period 2
@@ -15,5 +17,7 @@ Runtime Link: [here](http://72.197.231.5:8080)
 - Create an account
 
 ## Blueprinting
-![twitter wallpaper](static/assets/blueprint.jpeg)
+
+![blueprint](static/assets/blueprint.jpg)
+
 All members of our group created the blueprints together (sharescreen via zoom). Each blueprint page represents a page that will be on our finished site, with a description of the feature, and the group member that has been assigned to the task.
