@@ -7,7 +7,10 @@ Sarah Xie, Maggie Killada, Akhil Genneri, Nivu Rethnakar, Noya Hafiz
 Period 2
 
 Runtime Link: [here](http://72.197.231.5:8080)
+
 Scrum Board: [here](https://github.com/noyah81/p2ducks/projects/1)
+
+Project Plan: [here](https://docs.google.com/document/d/116Wt0SjYg3Qs0tVatOE36yF8bYnRhermPScTxo2H6Kc/edit?usp=sharing)
 
 ## Main Features:
 
