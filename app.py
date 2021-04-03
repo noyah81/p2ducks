@@ -4,7 +4,6 @@ from sqlalchemy.sql import text
 from werkzeug.security import check_password_hash, generate_password_hash
 from blueprint import blueprint
 
-
 app = Flask(__name__)
 # app.register_blueprint(blueprint)
 
@@ -62,7 +61,11 @@ def minilabakhil():
         return render_template("minilab-akhil.html", movierecs=Movie(int(request.form.get("series"))))
     return render_template("minilab-akhil.html")
 
-
+@app.route('/minilab-maggie')
+def minilabmaggie():
+    n = 2
+    showrecs = Shows(n/n)
+    return render_template("/minilab/minilab-maggie.html", showrecs=Shows(2))
 
 if __name__ == "__main__":
     # runs the application on the repl development server

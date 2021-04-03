@@ -50,7 +50,12 @@ class Shows:
     """Traditional Getter requires method access"""
     def get_sequence(self, nth):
         return self._dict[nth]
-
+'''
+def maggie_minilab():
+    n = 2
+    showrecs = Shows(n/n)
+    return showrecs
+'''
 
 # Tester Code
 if __name__ == "__main__":
