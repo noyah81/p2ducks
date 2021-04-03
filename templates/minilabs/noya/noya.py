@@ -43,7 +43,7 @@ def get_sequence(self, nth):
     return self._dict[nth]
 if __name__ == "__main__":
     '''Value for testing'''
-    n = 5
+    n = 6
     '''Constructor of Class object'''
     numberseries= Numbers(n)
     print("Here is a series of numbers = {numberserieslist}")
