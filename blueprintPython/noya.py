@@ -1,4 +1,4 @@
-import self as self
+from flask import Blueprint, render_template
 
 class Numbers:
     """Initializer of class takes series parameter and returns Class Object"""
@@ -12,7 +12,10 @@ class Numbers:
         self._dictID = 0
         # Duration timeElapsed;
         # Instant start = Instant.now();  // time capture -- start
-        self.calc_series()
+
+        # self.calc_series() Hi Noya! This is a comment from sarah - I commented out this line because it made the code not work!
+        # Sorry, I wanted to get it up for his checks lol
+
         # Instant end = Instant.now();    // time capture -- end
         # this.timeElapsed = Duration.between(start, end);
 
@@ -41,6 +44,16 @@ def number(self):
     return self._list[self._dictID - 1]
 def get_sequence(self, nth):
     return self._dict[nth]
+
+
+# create the blueprint
+noya = Blueprint('noya', __name__, url_prefix="/noya", static_folder="static",
+                  template_folder="templates")
+
+@noya.route('/minilab-noya')
+def minilabnoya():
+    return render_template("/minilabs/noya/minilab.html", shownumbers=Numbers(6))
+
 if __name__ == "__main__":
     '''Value for testing'''
     n = 6

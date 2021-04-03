@@ -1,4 +1,5 @@
 """Minilab """
+from flask import Blueprint, render_template
 import random
 
 showlist1 = ["wandavision", "falcon and the winter soldier", "stranger things", "the office", "the mandalorian", "the voice", "america's got talent"]
@@ -56,6 +57,17 @@ def maggie_minilab():
     showrecs = Shows(n/n)
     return showrecs
 '''
+
+# create the blueprint
+maggie = Blueprint('maggie', __name__, url_prefix="/maggie", static_folder="static",
+                  template_folder="templates")
+
+
+@maggie.route('/minilab-maggie')
+def minilabmaggie():
+    n = 2
+    showrecs = Shows(n / n)
+    return render_template("/minilabs/maggie/minilab-maggie.html", showrecs=Shows(2))
 
 # Tester Code
 if __name__ == "__main__":

@@ -1,3 +1,6 @@
+from flask import Blueprint, render_template, request
+
+# create the class
 class Movies:
     """Initializer of class takes series parameter and returns Class Objectg"""
     def __init__(self, series):
@@ -44,6 +47,18 @@ class Movies:
     """Traditional Getter requires method access"""
     def get_sequence(self, nth):
         return self._dict[nth]
+
+# create the blueprint
+akhil = Blueprint('akhil', __name__, url_prefix="/akhil", static_folder="static",
+                  template_folder="templates")
+
+@akhil.route('/minilab-akhil', methods = ['POST', 'GET'])
+def minilabakhil():
+    if request.method == "POST":
+        n = int(request.form.get("series"))
+        movierecs = Movies(n)
+        return render_template("minilab-akhil.html", movierecs=Movies(int(request.form.get("series"))))
+    return render_template("/minilabs/akhilesh/minilab-akhil.html", movierecs=None)
 
 
 # Tester Code

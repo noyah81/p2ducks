@@ -1,16 +1,18 @@
-<!DOCTYPE html>
+{% extends 'minilabTemplate.html' %}
+{% block minilab %}
 <head>
     <title>Maggie Minilab</title>
 </head>
-<body>
-<div style="padding:100px;">
-   <h3>Here are all {{showrecs.series}} shows!</h3>
 
-    <table>
-        <tr>
-            <th>{{showrecs.series}} shows:</th>
-            <th>{{showrecs.list}}</th>
-        </tr>
-    </table>
-</div>
-</body>
+<h1>Maggie's Minilab</h1>
+<p>This minilab pulls from a set of shows using classes</p>
+<h3>Here are all {{showrecs.series}} shows!</h3>
+
+<table>
+    <tr>
+        <th>{{showrecs.series}} shows:</th>
+        <th>{{showrecs.list}}</th>
+    </tr>
+</table>
+
+{% endblock %}

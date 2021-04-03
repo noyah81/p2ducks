@@ -1,0 +1,8 @@
+{% extends 'minilabTemplate.html' %}
+{% block minilab %}
+
+<h1>Sarah's Minilab</h1>
+<p>This minilab pulls from a set of playlists and returns a random one (takes a moment to load)</p>
+<p>{{ playlist | safe }}</p>
+
+{% endblock %}

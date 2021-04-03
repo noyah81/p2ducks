@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="margin-top:60px; margin-bottom:160px; width:50%; margin-left:auto; margin-right:auto; border-radius:20px;">
+    <h3>Welcome to our Minilabs!</h3>
+    <p>Our minilabs all have to do with pop culture - this is because we'd like ways to analyze pop
+        culture to use in setting Tags on Twitter</p>
+    <p>All of our minilabs use classes and blueprints to analyze data :)</p>
+    {% block minilab %}
+    {% endblock %}
+</div>
+
+{% endblock %}
