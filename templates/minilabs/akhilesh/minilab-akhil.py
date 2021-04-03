@@ -15,7 +15,7 @@ class Movies:
         # this.timeElapsed = Duration.between(start, end);
 
     """Algorithm for building Fibonacci sequence, this id called from __init__"""
-    def calc_series(self):
+    def movie_series(self):
         limit = self._series
         while limit > 0:
             self.set_data(f[0])
@@ -51,4 +51,5 @@ if __name__ == "__main__":
     '''Value for testing'''
     n = 20
     '''Constructor of Class object'''
-    fibonacci = Fibonacci(n)
+    movierecs = Movies(n)
+    print(f"Here are some movie recomendations = {movierecs.list}")
