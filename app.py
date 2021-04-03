@@ -54,6 +54,15 @@ def login():
 def signup():
     return render_template("signup.html")
 
+@app.route('/minilab-akhil')
+def minilabakhil():
+    if request.method == "POST":
+        n = int(request.form.get("series"))
+        movierecs = Movies(n)
+        return render_template("minilab-akhil.html", movierecs=Movie(int(request.form.get("series"))))
+    return render_template("minilab-akhil.html")
+
+
 
 if __name__ == "__main__":
     # runs the application on the repl development server
