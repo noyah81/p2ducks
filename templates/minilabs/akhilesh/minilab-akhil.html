@@ -36,15 +36,26 @@
         <!-- Sequence -->
         <div class="col-12" style="text-align: left; ">
             <!-- Series -->
-            <h3>Fibonacci build up for series: {{fibonacci.series}} number: {{fibonacci.number}}</h3>
+            <h3>Fibonacci build up for series: {{movierecs.series}} number: {{movierecs.list}}</h3>
             <div class="overflow-auto" style="height: 200px">
-                {% for i in range(fibonacci.series) %}
-                <h5>{{fibonacci.get_sequence(i)}}</h5>
+                {% for i in range(movierecs.series) %}
+                <h5>{{movierecs.get_sequence(i)}}</h5>
                 {% endfor %}
             </div>
             <!-- Code -->
             <script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2Fnighthawkcoders%2Fnighthawk_csp%2Fblob%2Fmaster%2Falgorithm%2Ffibonacci.py&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>        </div>
     </div>
+
+    <div id='prova' style="">{{movierecs.list}}</div>
+
+    <script>
+        window.onload = function () {
+            setTimeout(appeardiv,2000);
+        }
+        function appeardiv() {
+            document.getElementById('prova').style.display= "block";
+        }
+    </script>
 
 </div>
 </div>
