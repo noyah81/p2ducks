@@ -2,26 +2,275 @@
 {% block content %}
 <head>
     <title>Hawkers | Home</title>
+    <meta charset="UTF-8">
+    <title>CodePen - Twitter logo batmanization</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+    <style>
+       *, ::after, ::before {
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          -webkit-transition: all .5s ease-in-out;
+          -moz-transition: all .5s ease-in-out;
+          transition: all .5s ease-in-out;
+        }
+
+        * {
+          margin: 0;
+          padding: 0;
+        }
+
+        .wrapper {
+          width: 345px;
+          height: 275px;
+          margin: 0 auto 0.5em;
+          overflow: visible;
+          cursor: pointer;
+          transform: scale(0.7);
+        }
+        .wrapper:hover {
+          transform: scale(0.7) rotate(-90deg);
+        }
+
+        .bird {
+          width: 800px;
+          height: auto;
+          top: -358px;
+          left: -325px;
+          position: relative;
+        }
+        .bird:hover div {
+          background: #222;
+        }
+        .bird > div {
+          width: 140px;
+          height: 140px;
+          background: #2daae1;
+          border-radius: 100%;
+          position: absolute;
+        }
+        .bird .tail-cut, .bird .feather-bottom-cut, .bird .feather-middle-cut, .bird .body-top-cut, .bird .mouth-bottom-cut, .bird .mouth-top-cut, .bird .hide-extra, .bird:hover .tail-cut, .bird:hover .feather-bottom-cut, .bird:hover .feather-middle-cut, .bird:hover .body-top-cut, .bird:hover .mouth-bottom-cut, .bird:hover .mouth-top-cut, .bird:hover .hide-extra {
+          background: white;
+        }
+        .bird .body {
+          width: 390px;
+          height: 390px;
+          top: 240px;
+          left: 240px;
+        }
+        .bird .tail-cut {
+          width: 285px;
+          height: 285px;
+          left: 198px;
+          top: 315px;
+        }
+        .bird .feather-bottom {
+          left: 366px;
+          top: 430px;
+        }
+        .bird .feather-bottom-cut {
+          left: 310px;
+          top: 384px;
+        }
+        .bird .feather-middle {
+          left: 344px;
+          top: 382px;
+        }
+        .bird .feather-middle-cut {
+          left: 300px;
+          top: 320px;
+        }
+        .bird .feather-top {
+          top: 335px;
+          left: 345px;
+        }
+        .bird .body-top-cut {
+          width: 390px;
+          height: 390px;
+          top: 52px;
+          left: 310px;
+        }
+        .bird .mouth-bottom {
+          width: 130px;
+          height: 130px;
+          top: 302px;
+          left: 536px;
+        }
+        .bird .mouth-bottom-cut {
+          width: 235px;
+          height: 235px;
+          top: 166px;
+          left: 495px;
+        }
+        .bird .mouth-top {
+          width: 130px;
+          height: 130px;
+          top: 279px;
+          left: 527px;
+        }
+        .bird .mouth-top-cut {
+          width: 235px;
+          height: 235px;
+          top: 147px;
+          left: 472px;
+        }
+        .bird .head {
+          width: 135px;
+          height: 135px;
+          top: 358px;
+          left: 493px;
+        }
+        .bird .hide-extra {
+          top: 250px;
+          left: 200px;
+        }
+        .bird #bat-face {
+          display: none;
+          position: absolute;
+          left: 493px;
+          top: 358px;
+        }
+
+    </style>
 </head>
 <body>
-<div style="padding:100px;">
-    <h1>Welcome to the Hawkers Homepage!</h1>
-    <p>While it doesn't look like much now, there's lots going on behind the scenes!</p>
-    <p>Our elite team of Del Norte students are coding great things (just not frontend for now)</p>
-    <img src="/static/assets/dnhslogo.png">
+
+<div style="display:grid; grid-template-columns: 1fr 1fr;margin:50px;">
+    <div style="padding-left:50px;margin-top:50px;text-align:right;">
+        <h1 style="font-size:100px;">Hawkers</h1>
+        <p>A DNHS-Themed Twitter Clone!</p>
+        <h3>Hover on the LOGO!</h3>
+    </div>
+
+    <!-- partial:index.partial.html -->
+    <div class="wrapper" style="width:50%;margin-top:150px;">
+        <div class="bird">
+            <div class="body"></div>
+            <div class="tail-cut"></div>
+            <div class="feather-bottom"></div>
+            <div class="feather-bottom-cut"></div>
+            <div class="feather-middle"></div>
+            <div class="feather-middle-cut"></div>
+            <div class="feather-top"></div>
+            <div class="body-top-cut"></div>
+            <div class="mouth-bottom"></div>
+            <div class="mouth-bottom-cut"></div>
+            <div class="mouth-top"></div>
+            <div class="mouth-top-cut"></div>
+            <div class="head"></div>
+            <canvas id="bat-face"></canvas>
+            <div class="hide-extra"></div>
+        </div>
+    </div>
+
 </div>
+
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<script>
+   (function(){
+      var canvas = document.getElementById('bat-face'),
+        ctx = canvas.getContext('2d');
+
+      canvas.width = 138;
+      canvas.height = 138;
+
+      var x = 67,
+          y = 67,
+          radius = 68;
+
+      //create clipping mask
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(x,y,radius,0,Math.PI*2,false);
+      ctx.clip();
+
+      var faceStart = {x:0,y:-40},
+          faceEnd = {x:0,y:83};
+
+      //draw face shadow
+      ctx.beginPath();
+      ctx.moveTo(faceStart.x,faceStart.y);
+      ctx.bezierCurveTo(30, 10, 78, 97, faceEnd.x, faceEnd.y);
+      ctx.lineTo(-50,-50);
+      ctx.lineTo(faceStart.x,faceStart.y);
+      ctx.fillStyle = '#b29f89';
+      ctx.fill();
+
+      //draw face
+      ctx.beginPath();
+      ctx.moveTo(faceStart.x,faceStart.y);
+      ctx.bezierCurveTo(30, 10, 78, 97, faceEnd.x, faceEnd.y-10);
+      ctx.lineTo(-50,-50);
+      ctx.lineTo(faceStart.x,faceStart.y);
+      ctx.fillStyle = '#c6b199';
+      ctx.fill();
+
+      //draw mouth
+      ctx.beginPath();
+      ctx.moveTo(0,40);
+      ctx.bezierCurveTo(0,10,20,30,20,40);
+      ctx.lineWidth = 3;
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = '#222';
+      ctx.stroke();
+
+      //draw eye
+      var eyeStart = {x:55,y:15};
+      ctx.beginPath();
+      ctx.moveTo(eyeStart.x,eyeStart.y);
+      ctx.bezierCurveTo(45,20,55,27,62,30);
+      ctx.lineTo(eyeStart.x,eyeStart.y);
+      ctx.fillStyle = 'white';
+      ctx.fill();
+
+      ctx.restore();
+
+      //hover event to reveal batman
+      $('.wrapper').hover(
+        function(){
+          var $batFace = $('#bat-face');
+          $batFace.show();
+        },
+        function(){
+          var $batFace = $('#bat-face');
+          $batFace.hide();
+        }
+      );
+    })();
+</script>
+
+<div style="margin:50px">
+    <div style="margin-top:100px; width:50%; margin-left:auto; margin-right:auto;">
+        <h3>Tweeting But better!</h3>
+        <p>Here on Hawkers, you get the full Twitter experience but without the toxicity of regular twitter! Enjoy the
+            sweet Del Norte High School Themed Color scheme, as well as all the features of regular twitter!
+            Start Tweeting Today!</p>
+    </div>
+    <div class="lower" style="margin-top:100px; width:50%; margin-left:auto; margin-right:auto;">
+        <h3>Start Tweeting Now!</h3>
+        <!--  input-->
+        <form>
+        <label for="user">Your user: </label>
+            <br>
+        <textarea id="tweet" name="tweet" placeholder="share your thoughts" style="width:100%;padding:10px;"required></textarea >
+            <br>
+        <input type="hidden" name="did_submit" value="true">
+        <!-- button -->
+        <input type="submit" value="Submit">
+        </form>
+    </div>
 
 
 </div>
-<div class="lower">
-    <!--  input-->
-    <label for="user">Your user: </label>
-    <textarea id="tweet" name="tweet" placeholder="share your thoughts" required></textarea >
-    <input type="hidden" name="did_submit" value="true">
+
 </div>
-<!-- button -->
-<input type="submit" value="Submit">
-</form>
-</div>
+
 </body>
 {% endblock %}
