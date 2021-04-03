@@ -16,6 +16,7 @@ Project Plan: [here](https://docs.google.com/document/d/116Wt0SjYg3Qs0tVatOE36yF
 We're building a Twitter Clone for DNHS students called Hawkers!
 
 ### Tri3 Minilab
+##### All mini-labs can be found in a subsection under templates. The individual repositories linked below are for code testing and revisions before finalizing commits to the scrum repository.
 ##### [Nivu Rethnakar](https://github.com/nivupai/nivu_minilab)
 ##### [Maggie Killada](https://github.com/maggie3000/helloworld)
 ##### [Noya Hafiz](https://github.com/noyah81/noyaminilab)
