@@ -4,6 +4,10 @@ from sqlalchemy.sql import text
 from werkzeug.security import check_password_hash, generate_password_hash
 from blueprint import blueprint
 
+# import classes from blueprints
+from blueprintPython.maggie_minilab import Shows
+from blueprintPython.minilab_akhil import Movies
+
 app = Flask(__name__)
 # app.register_blueprint(blueprint)
 
@@ -53,19 +57,35 @@ def login():
 def signup():
     return render_template("signup.html")
 
+
 @app.route('/minilab-akhil')
 def minilabakhil():
     if request.method == "POST":
         n = int(request.form.get("series"))
         movierecs = Movies(n)
-        return render_template("minilab-akhil.html", movierecs=Movie(int(request.form.get("series"))))
-    return render_template("minilab-akhil.html")
+        return render_template("minilab-akhil.html", movierecs=Movies(int(request.form.get("series"))))
+    return render_template("/minilabs/akhilesh/minilab-akhil.html", movierecs=None)
+
 
 @app.route('/minilab-maggie')
 def minilabmaggie():
     n = 2
-    showrecs = Shows(n/n)
-    return render_template("/minilab/minilab-maggie.html", showrecs=Shows(2))
+    showrecs = Shows(n / n)
+    return render_template("/minilabs/maggie/minilab-maggie.html", showrecs=Shows(2))
+
+@app.route('/minilab-sarah')
+def minilabsarah():
+    return render_template("/minilabs/sarah/minilab-sarah.html")
+
+
+@app.route('/minilab-noya')
+def minilabnoya():
+    return render_template("/minilabs/noya/minilab-noya.html")
+
+
+@app.route('/minilab-nivu')
+def minilabnivu():
+    return render_template("/minilabs/nivu/minilab-nivu.html")
 
 if __name__ == "__main__":
     # runs the application on the repl development server

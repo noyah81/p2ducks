@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% extends "layout.html" %}
+{% extends "base.html" %}
 
 {% block content %}
 <div class="container">
@@ -38,9 +38,11 @@
             <!-- Series -->
             <h3>Fibonacci build up for series: {{movierecs.series}} number: {{movierecs.list}}</h3>
             <div class="overflow-auto" style="height: 200px">
-                {% for i in range(movierecs.series) %}
-                <h5>{{movierecs.get_sequence(i)}}</h5>
-                {% endfor %}
+                {% if (movierecs != None) %}
+                    {% for i in range(movierecs.series) %}
+                    <h5>{{movierecs.get_sequence(i)}}</h5>
+                    {% endfor %}
+                {% endif %}
             </div>
             <!-- Code -->
             <script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2Fnighthawkcoders%2Fnighthawk_csp%2Fblob%2Fmaster%2Falgorithm%2Ffibonacci.py&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>        </div>
