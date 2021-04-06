@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% extends 'minilabTemplate.html' %}
+{% block minilab %}
+<div class="container">
+
+    <div class="center-block" style="margin: 2% 5% 5%; font-family: gilroy,serif;">
+        <!-- Title -->
+        <div class="col-12" style="text-align: center;">
+            <h1><strong>Factorial</strong></h1>
+        </div>
+
+        <!-- Input and Content -->
+        <div class="jumbotron text-center row">
+            <div class="col-md-6">
+                <h3>Type in a value to find the factorial</h3>
+                <form id="factForm" action="/noya/factorial" method="POST" >
+                    <input name="num" id="num" type="number"  min="1" max="10" >
+                    <button> Calculate </button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h3>Factorial for {{fact.number}} = {{fact.result}}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<style>
+{
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>

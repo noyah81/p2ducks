@@ -1,62 +1,56 @@
-from flask import Blueprint, render_template
 
-class Numbers:
+from flask import Blueprint, render_template, request
+
+
+#Enhance or Define a Class
+class Factorial:
     """Initializer of class takes series parameter and returns Class Object"""
-    def __init__(self, series):
+
+    def __init__(self, number):
         """Built in validation and exception"""
-        if series < 0 or series > 10:
-            raise ValueError("Series must be between 1 and 10")
-        self._series = series
-        self._list = []
-        self._dict = {}
-        self._dictID = 0
-        # Duration timeElapsed;
-        # Instant start = Instant.now();  // time capture -- start
+        if number < 1 or number > 10:
+            raise ValueError("Number must be between 1 and 10")
+#Create an Object from a Class in Python
+        self._number = number
+        self._result = 1
+        self.calc_factorial()
 
-        # self.calc_series() Hi Noya! This is a comment from sarah - I commented out this line because it made the code not work!
-        # Sorry, I wanted to get it up for his checks lol
+    def calc_factorial(self):
+        limit = self._number
+        while limit > 0:
+            self._result = self._result * limit
+            print(self._result)
+            limit -= 1
 
-        # Instant end = Instant.now();    // time capture -- end
-        # this.timeElapsed = Duration.between(start, end);
+    #Display data or enhanced data from this Python Object on Project Web Page using "getters"
+    @property
+    def result(self):
+        return self._result
 
-def number_series(self):
-    limit = self._series
-    while limit > 0:
-        self.set_data(f[0])
-        f = [f[0]]
-        limit -= 1
 
-def set_data(self, num):
-        self._list.append(num)
-        self._dict[self._dictID] = self._list.copy()
-        self._dictID += 1
-
-@property
-def series(self):
-    return self._series
-
-@property
-def list(self):
-    return self._list
-
-@property
-def number(self):
-    return self._list[self._dictID - 1]
-def get_sequence(self, nth):
-    return self._dict[nth]
+    @property
+    def number(self):
+        return self._number
 
 
 # create the blueprint
 noya = Blueprint('noya', __name__, url_prefix="/noya", static_folder="static",
-                  template_folder="templates")
+                 template_folder="templates")
 
-@noya.route('/minilab-noya')
-def minilabnoya():
-    return render_template("/minilabs/noya/minilab.html", shownumbers=Numbers(6))
+@noya.route('/factorial', methods=["GET", "POST"])
+def factorial():
+    # request form is from action button on html
+    if request.form:
+        return render_template("blueprintPython/noya.html", fact=Factorial(int(request.form.get("num"))))
+    # first call from menu
+    return render_template("blueprintPython/noya.html", fact=Factorial(2))
+
 
 if __name__ == "__main__":
     '''Value for testing'''
     n = 6
     '''Constructor of Class object'''
-    numberseries= Numbers(n)
-    print("Here is a series of numbers = {numberserieslist}")
+    fact = Factorial(n)
+    print(f"Here is the factorial for {fact.number} = {fact.result}")
+
+
