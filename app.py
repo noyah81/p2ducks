@@ -1,18 +1,14 @@
-from flask import Flask, flash, jsonify, redirect, url_for, render_template, request, session, current_app, g
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import text
-from werkzeug.security import check_password_hash, generate_password_hash
-from blueprint import blueprint
 
 # import classes from blueprints
-from blueprintPython.minilab_akhil import Movies
 
 # import from blueprints
-from blueprintPython.sarah import sarah
-from blueprintPython.maggie_minilab import maggie
-from blueprintPython.nivu import nivu
-from blueprintPython.minilab_akhil import akhil
-from blueprintPython.noya import noya
+from templates.minilabs.sarah.sarah import sarah
+from templates.minilabs.maggie.maggie_minilab import maggie
+from templates.minilabs.nivu.nivu import nivu
+from templates.minilabs.akhilesh.minilab_akhil import akhil
+from templates.minilabs.noya.noya import noya
 
 
 app = Flask(__name__)
