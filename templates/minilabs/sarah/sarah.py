@@ -7,7 +7,25 @@ class playlistClass:
         self._playlists = playlists
 
     def getplaylist(self):
-        return random.choice(self._songs)
+        return random.choice(self._playlists)
+
+    """Getters with decorator to allow . notation access"""
+
+    @property
+    def series(self):
+        return self._series
+
+    @property
+    def list(self):
+        return self._list
+
+    @property
+    def getRandom(self):
+        return random(self._playlists)
+
+    @property
+    def number(self):
+        return self._playlists[self._playlists - 1]
 
 
 # create the blueprint
@@ -18,7 +36,6 @@ sarah = Blueprint('sarah', __name__, url_prefix="/sarah", static_folder="static"
 # define the route for the minilab
 @sarah.route('/playlists')
 def playlists():
-
     playlistsList = [
         '<iframe src="https://open.spotify.com/embed/playlist/7Jv7B5XZWpxkqPf3LpWGes" width="700" height="380" '
         'frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> ',
@@ -30,4 +47,4 @@ def playlists():
         'frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> '
     ]
 
-    return render_template('minilabs/sarah/sarah.html', playlistPass=playlistClass(playlistsList), playlist=random.choice(playlistsList))
+    return render_template('minilabs/sarah/sarah.html', playlist=playlistClass(playlistsList))
