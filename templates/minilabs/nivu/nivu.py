@@ -56,7 +56,7 @@ def minilabnivu():
 # Tester Code
 if __name__ == "__main__":
     '''Value for testing'''
-    n = 2
+    n = 7
     '''Constructor of Class object'''
     factorial = Factorial(n)
 
