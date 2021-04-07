@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 
 class Factorial:
     """Initializer of class takes series parameter and returns Class Objectg"""
@@ -50,7 +50,13 @@ nivu = Blueprint('nivu', __name__, url_prefix="/nivu", static_folder="static",
 
 @nivu.route('/minilab-nivu', methods=['POST', 'GET'])
 def minilabnivu():
-    return render_template("/minilabs/nivu/minilab-nivu.html", factorial=Factorial(3))
+    if request.method == 'POST':
+        n = int(request.form.get("series"))
+        print("post")
+        return render_template("/minilabs/nivu/minilab-nivu.html", factorial=Factorial(n))
+    else:
+        return render_template("/minilabs/nivu/minilab-nivu.html", factorial=None)
+
 
 
 # Tester Code
