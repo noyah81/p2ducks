@@ -68,3 +68,4 @@ if __name__ == "__main__":
 
     '''Using getters to obtain data from object'''
     print(f"Factorial number for {n} = {factorial.number}")
+""
