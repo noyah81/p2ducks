@@ -44,14 +44,6 @@ class Factorial:
     def get_sequence(self, nth):
         return self._dict[nth]
 
-nivu = Blueprint('nivu', __name__, url_prefix="/nivu", static_folder="static",
-                 template_folder="templates")
-
-
-@nivu.route('/minilab-nivu', methods=['POST', 'GET'])
-def minilabnivu():
-    return render_template("/minilabs/nivu/minilab-nivu.html", factorial=Factorial(3))
-
 
 # Tester Code
 if __name__ == "__main__":
