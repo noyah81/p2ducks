@@ -1,5 +1,8 @@
 from flask import Blueprint, render_template, request
 
+import random
+color = "%06x" % random.randint(0, 0xFFFFFF)
+
 class Factorial:
     """Initializer of class takes series parameter and returns Class Objectg"""
     def __init__(self, series):
