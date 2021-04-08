@@ -1,14 +1,29 @@
 """Minilab """
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 import random
+import requests
+import json
 
-showlist1 = ["wandavision", "falcon and the winter soldier", "stranger things", "the office", "the mandalorian", "the voice", "america's got talent"]
+
+url = "https://www.episodate.com/api/most-popular?page=1"
+response = requests.request("GET", url)
+#print(type(response))
+
+responseJsonObj = json.loads(response.text)
+#print(type(responseJsonObj))
+
+
+showList1 = []
+for data in responseJsonObj['tv_shows']:
+    showList1.append(data['name'])
+#print(showList1)
+n = 1
 
 class Shows:
     """Initializer of class takes series parameter and returns Class Object"""
     def __init__(self, series):
         """Built in validation and exception"""
-        if series < 0 or series > 7:
+        if series < 0 or series > 20:
             raise ValueError("Series must be between 0 and 7")
         self._series = series
         self._list = []
@@ -23,11 +38,11 @@ class Shows:
     """Algorithm for building sequence, this id called from __init__"""
     def show_series(self):
         limit = self._series
-        f = [random.sample((showlist1), k=2)]  # starting array/list
-        while limit > 0:
-            self.set_data(f[0])
-            f = [f[0]]
-            limit = limit - 1
+        f = [random.sample((showList1), k=self.series)]  # starting array/list
+        #while limit > 0:
+        self.set_data(f[0])
+        #f = [f[0]]
+        #limit = limit - 1
 
     """Method/Function to set data: list, dict, and dictID are instance variables of Class"""
     def set_data(self, num):
@@ -51,28 +66,35 @@ class Shows:
     """Traditional Getter requires method access"""
     def get_sequence(self, nth):
         return self._dict[nth]
-'''
-def maggie_minilab():
-    n = 2
-    showrecs = Shows(n/n)
-    return showrecs
-'''
+
 
 # create the blueprint
 maggie = Blueprint('maggie', __name__, url_prefix="/maggie", static_folder="static",
                   template_folder="templates")
 
 
-@maggie.route('/minilab-maggie')
+@maggie.route('/minilab-maggie', methods=["GET", "POST"])
 def minilabmaggie():
-    n = 2
+    if request.method == 'POST':
+        n = int(request.form.get("shows"))
+        return render_template("/minilabs/maggie/minilab-maggie.html", showrecs=Shows(n))
+    else:
+        return render_template("/minilabs/maggie/minilab-maggie.html", showrecs=Shows(1))
+
+
+    '''
+    n = 1
     showrecs = Shows(n / n)
-    return render_template("/minilabs/maggie/minilab-maggie.html", showrecs=Shows(2))
+    return render_template("/minilabs/maggie/minilab-maggie.html", showrecs=Shows())
+    '''
+
 
 # Tester Code
+'''
 if __name__ == "__main__":
-    '''Value for testing'''
+    #Value for testing
     n = 2
-    '''Constructor of Class object'''
+    #Constructor of Class object
     showrecs = Shows(n/n)
     print(f"Here are some show recommendations = {showrecs.list}")
+'''

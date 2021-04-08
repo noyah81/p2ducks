@@ -2,8 +2,66 @@
 {% block minilab %}
 <head>
     <title>Maggie Minilab</title>
+    <style>
+    table, td, th {
+        border: 1px solid var(--dblue);
+    }
+    td, th {
+        text-align:left;
+    }
+    </style>
 </head>
 
+<h1>Maggie's Minilab</h1>
+<p>This minilab recommends a certain number of shows based on user input.</p>
+
+<div class="container">
+
+    <div class="center-block" style="margin: 2% 5% 5%; font-family: gilroy,serif;">
+        <div class="col-12" style="text-align: center;">
+            <h1><strong>Show Recommendations</strong></h1>
+        </div>
+
+        <div class="jumbotron text-center row">
+            <div class="col-md-6">
+                <h3>Enter number of show recommendations.</h3>
+                <form id="showForm" action="/maggie/minilab-maggie" method="POST" >
+                    <input name="shows" id="shows" type="number" min="1" max="20" >
+                    <button>Submit</button>
+                </form>
+            </div>
+
+            <div class="col-md-6">
+                <h3>{{showrecs.series}} Show Recommendations</h3>
+                <table class="mx-auto">
+                    <tr>
+                        <th scope="col">Number</th>
+                    </tr>
+                    <tr>
+                        <td>{{showrecs.series}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-12" style="text-align: left; ">
+            <h3 style = "color:color"> Shows: {{showrecs.list}}</h3>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <h1>Maggie's Minilab</h1>
 <p>This minilab pulls from a set of shows using classes</p>
 <h3>Here are all {{showrecs.series}} shows!</h3>
@@ -14,5 +72,5 @@
         <th>{{showrecs.list}}</th>
     </tr>
 </table>
-
+-->
 {% endblock %}
