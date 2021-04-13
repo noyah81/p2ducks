@@ -60,7 +60,7 @@ akhil = Blueprint('akhil', __name__, url_prefix="/akhil", static_folder="static"
 def minilabakhil():
     n = 2
     movierecs = Movies(n / n)
-    return render_template("minilab-akhil.html", movierecs=Movies)
+    return render_template("minilab-akhil.html", movierecs=Movies(2))
 
 
 # Tester Code
