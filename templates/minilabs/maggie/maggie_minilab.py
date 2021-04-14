@@ -24,7 +24,7 @@ class Shows:
     def __init__(self, series):
         """Built in validation and exception"""
         if series < 0 or series > 20:
-            raise ValueError("Series must be between 0 and 7")
+            raise ValueError("Series must be between 0 and 20")
         self._series = series
         self._list = []
         self._dict = {}
