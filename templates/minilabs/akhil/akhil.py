@@ -6,10 +6,8 @@ class AbsoluteValue:
     """Initializer of class takes series parameter and returns Class Objectg"""
     def __init__(self, series):
         """Built in validation and exception"""
-        if series < 0:
-            raise ValueError("Absolute Value does not exist")
         self._series = series
-        self._value = 0
+        self._value = []
         self._dict = {}
         self._dictID = 0
         # Duration timeElapsed;
@@ -22,9 +20,11 @@ class AbsoluteValue:
     def absv_series(self):
         y = self._series
         b = 1
-        for i in range(1, y+1):
-            b = abs(i*b)
-        self.set_data
+        if y > 0:
+            b = y
+        else:
+            b = -y
+        self.set_data(b)
 
     """Method/Function to set Fibonacci data: list, dict, and dictID are instance variables of Class"""
     def set_data(self, num):
@@ -51,7 +51,7 @@ class AbsoluteValue:
 akhil = Blueprint('akhil', __name__, url_prefix="/akhil", static_folder="static",
                   template_folder="templates")
 
-@akhil.route('/minilab-akhil')
+@akhil.route('/minilab-akhil', methods=['POST', 'GET'])
 def minilabakhil():
     if request.method == 'POST':
         n = int(request.form.get("series"))
