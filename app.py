@@ -7,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from templates.minilabs.sarah.sarah import sarah
 from templates.minilabs.maggie.maggie_minilab import maggie
 from templates.minilabs.nivu.nivu import nivu
-from templates.minilabs.akhilesh.minilab_akhil import akhil
+from templates.minilabs.akhil.minilab_akhil import akhil
 from templates.minilabs.noya.noya import noya
 
 
