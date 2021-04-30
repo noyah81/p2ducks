@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% extends 'minilabTemplate.html' %}
+{% block minilab %}
+<div class="container">
+
+    <div class="center-block" style="margin: 2% 5% 5%; font-family: gilroy,serif;">
+        <!-- Title -->
+        <div class="col-12" style="text-align: center;">
+            <h1><strong>Bubble Sort</strong></h1>
+        </div>
+        <!-- input -->
+        <div class="col-md-5">
+            <div id="multi" style="background-color: #05556D">
+                <form id="bubForm" action="minilabs/noya/factorial" method="POST" >
+                    <label style="color: #FFFFFF"><b>Input Numbers</b></label>
+                </form>
+                    <g id="multi_input">
+                        <input style="margin-bottom: 10px" name="user_input1" type="number">
+                        <input style="margin-bottom: 10px" name="user_input2" type="number">
+                        <input style="margin-bottom: 10px" name="user_input3" type="number">
+                        <input style="margin-bottom: 10px" name="user_input4" type="number">
+                        <input style="margin-bottom: 10px" name="user_input5" type="number">
+                    </g>
+            </div>
+
+
+            <div class="col-md-5">
+                <div style="background-color: #CD7F4D">
+                    <h3>Output</h3>
+                    original array is:
+                    {arr}
+                    Sorted array is:
+                    {b.result}
+                </div>

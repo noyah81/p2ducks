@@ -19,6 +19,7 @@ class Factorial:
         limit = self._number
         while limit > 0:
             self._result = self._result * limit
+            self._result = ()
             print(self._result)
             limit -= 1
 
@@ -41,9 +42,9 @@ noya = Blueprint('noya', __name__, url_prefix="/noya", static_folder="static",
 def factorial():
     # request form is from action button on html
     if request.form:
-        return render_template("blueprintPython/noya.html", fact=Factorial(int(request.form.get("num"))))
+        return render_template("minilabs/noya.html", fact=Factorial(int(request.form.get("num"))))
     # first call from menu
-    return render_template("blueprintPython/noya.html", fact=Factorial(2))
+    return render_template("minilabs/noya.html", fact=Factorial(2))
 
 
 if __name__ == "__main__":
