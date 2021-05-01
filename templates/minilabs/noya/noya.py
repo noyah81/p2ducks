@@ -19,6 +19,7 @@ class Factorial:
         limit = self._number
         while limit > 0:
             self._result = self._result * limit
+            self._result = ()
             print(self._result)
             limit -= 1
 
