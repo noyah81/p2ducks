@@ -23,7 +23,8 @@ class AbsoluteValue:
         if y > 0:
             b = y
         else:
-            b = -y
+            if y < 0:
+                b = -y
         self.set_data(b)
 
     """Method/Function to set Fibonacci data: list, dict, and dictID are instance variables of Class"""
@@ -64,7 +65,7 @@ def minilabakhil():
 # Tester Code
 if __name__ == "__main__":
     '''Value for testing'''
-    n = 7
+    n = -7
     '''Constructor of Class object'''
     absolutevalue = AbsoluteValue(n)
     print(f"The Absolute Value for {n} = {absolutevalue.number}")
