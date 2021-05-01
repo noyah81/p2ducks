@@ -47,4 +47,4 @@ def playlists():
         'frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> '
     ]
 
-    return render_template('minilabs/sarah/sarah.html', playlist=playlistClass(playlistsList))
+    return render_template('minilabs/sarah/sarah.html', playlist=random.choice(playlistsList))
