@@ -81,20 +81,42 @@ def minilabmaggie():
     else:
         return render_template("/minilabs/maggie/minilab-maggie.html", showrecs=Shows(1))
 
+mylist=[]
+def bubbleSort():
+    z = len(mylist)
+    for x in range(z):
+        for y in range(0, z-x-1):
+            if mylist[y] > mylist[y+1]:
+                mylist[y], mylist[y+1] = mylist[y+1], mylist[y]
+    print(mylist)
 
-    '''
-    n = 1
-    showrecs = Shows(n / n)
-    return render_template("/minilabs/maggie/minilab-maggie.html", showrecs=Shows())
-    '''
-
-
-# Tester Code
-'''
-if __name__ == "__main__":
-    #Value for testing
-    n = 2
-    #Constructor of Class object
-    showrecs = Shows(n/n)
-    print(f"Here are some show recommendations = {showrecs.list}")
-'''
+@maggie.route('/bubblesortmaggie', methods=["GET", "POST"])
+def bubblesortmaggie():
+    if request.method == 'POST':
+        print("1", request.form.get("sort1"))
+        print("2", request.form.get("sort2"))
+        print("3", request.form.get("sort3"))
+        mylist.clear()
+        if request.form.get("sort1") == "Submit":
+            mylist.append(int(request.form.get("num1")))
+            mylist.append(int(request.form.get("num2")))
+            mylist.append(int(request.form.get("num3")))
+            mylist.append(int(request.form.get("num4")))
+            mylist.append(int(request.form.get("num5")))
+        if request.form.get("sort2") == "Submit":
+            mylist.append(request.form.get("string1"))
+            mylist.append(request.form.get("string2"))
+            mylist.append(request.form.get("string3"))
+            mylist.append(request.form.get("string4"))
+            mylist.append(request.form.get("string5"))
+        if request.form.get("sort3") == "Submit":
+            mylist.append(request.form.get("char1"))
+            mylist.append(request.form.get("char2"))
+            mylist.append(request.form.get("char3"))
+            mylist.append(request.form.get("char4"))
+            mylist.append(request.form.get("char5"))
+        #print(mylist)
+        bubbleSort()
+        return render_template("/minilabs/maggie/minilab-maggie.html", mylist=mylist, showrecs=[])
+    else:
+        print("error")

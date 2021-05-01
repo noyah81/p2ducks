@@ -11,6 +11,61 @@
     }
     </style>
 </head>
+<div class="container">
+
+    <div class="center-block" style="margin: 2% 5% 5%; font-family: gilroy,serif;">
+        <div class="col-12" style="text-align: center;">
+            <h1><strong>Maggie's Bubble Sort Algorithm</strong></h1>
+        </div>
+
+        <div class="jumbotron text-center row">
+            <div>
+                <h3>Enter number of followers on social media.</h3>
+                <form id="showForm1" action="/maggie/bubblesortmaggie" method="POST">
+                    <input name="num1" type="number" min="1">
+                    <input name="num2" type="number" min="1">
+                    <input name="num3" type="number" min="1">
+                    <input name="num4" type="number" min="1">
+                    <input name="num5" type="number" min="1">
+                    <input type="submit" name="sort1">
+                </form>
+            </div>
+            <br>
+            <div>
+                <h3>Enter favorite cities.</h3>
+                <form id="showForm2" action="/maggie/bubblesortmaggie" method="POST">
+                    <input name="string1" type="text" minlength="1">
+                    <input name="string2" type="text" minlength="1">
+                    <input name="string3" type="text" minlength="1">
+                    <input name="string4" type="text" minlength="1">
+                    <input name="string5" type="text" minlength="1">
+                    <input type="submit" name="sort2">
+                </form>
+            </div>
+            <br>
+            <div>
+                <h3>Enter middle initial.</h3>
+                <form id="showForm3" action="/maggie/bubblesortmaggie" method="POST">
+                    <input name="char1" type="text" minlength="1" maxlength="1">
+                    <input name="char2" type="text" minlength="1" maxlength="1">
+                    <input name="char3" type="text" minlength="1" maxlength="1">
+                    <input name="char4" type="text" minlength="1" maxlength="1">
+                    <input name="char5" type="text" minlength="1" maxlength="1">
+                    <input type="submit" name="sort3">
+                </form>
+            </div>
+            <br><br><br><br>
+            <div style="text-align:center;">
+                <h3>Sorted Data</h3>
+                <table>
+                    <tr>
+                        <td>{{mylist}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 <h1>Maggie's Minilab</h1>
 <p>This minilab recommends a certain number of shows based on user input.</p>
@@ -45,13 +100,11 @@
         </div>
 
         <div class="col-12" style="text-align: left; ">
-            <h3 style = "color:color"> Shows: {{showrecs.list}}</h3>
+            <h3 style = "color:color"> Shows:{{showrecs.list}}</h3>
         </div>
 
     </div>
 </div>
-
-
 
 
 
