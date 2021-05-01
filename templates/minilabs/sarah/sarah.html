@@ -1,5 +1,28 @@
 {% extends 'minilabTemplate.html' %}
 {% block minilab %}
+<h1>Sarah's Bubble Sort Algorithm</h1>
+
+<form action="/sarah/playlists" method="POST">
+    <p>What are the ages of your favorite family members?</p><br>
+    <input type="number"  name="family"><br>
+    <input type="number"  name="family"><br>
+    <input type="number"  name="family"><br>
+    <input type="number"  name="family"><br>
+
+    <p>Who are some of your friends?</p><br>
+    <input type="text"  name="friends"><br>
+    <input type="text"  name="friends"><br>
+    <input type="text"  name="friends"><br>
+    <input type="text"  name="friends"><br>
+
+    <p>What are some of your favorite letters?</p><br>
+    <input type="text" name="letters"><br>
+    <input type="text"  name="letters"><br>
+    <input type="text"  name="letters"><br>
+    <input type="text" name="letters"><br>
+
+    <input type="submit" value="Submit">
+</form>
 
 <h1>Sarah's Minilab</h1>
 <p>This minilab pulls from a set of playlists and returns a random one (takes a moment to load)</p>
