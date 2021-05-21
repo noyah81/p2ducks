@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 # import from blueprints
 from templates.minilabs.sarah.sarah import sarah
-from templates.minilabs.maggie.maggie_minilab import maggie
+#from templates.minilabs.maggie.maggie_minilab import maggie
 from templates.minilabs.nivu.nivu import nivu
 from templates.minilabs.akhil.akhil import akhil
 from templates.minilabs.noya.noya import noya
@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 # register the blueprints
 app.register_blueprint(sarah)
-app.register_blueprint(maggie)
+#app.register_blueprint(maggie)
 app.register_blueprint(nivu)
 app.register_blueprint(akhil)
 app.register_blueprint(noya)

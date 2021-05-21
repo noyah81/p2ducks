@@ -9,7 +9,7 @@ url = "https://www.episodate.com/api/most-popular?page=1"
 response = requests.request("GET", url)
 #print(type(response))
 
-responseJsonObj = json.loads(response.text)
+responseJsonObj = json.loads(response)
 #print(type(responseJsonObj))
 
 
