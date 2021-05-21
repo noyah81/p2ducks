@@ -2,6 +2,20 @@
 {% block content %}
 <head>
     <title>New Tweet</title>
+    </div>
+    <div class="lower" style="margin-top:160px; margin-bottom:160px; width:50%; margin-left:auto; margin-right:auto; background-color:#d5e2ed;padding:50px; border-radius:20px; box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.2);">
+        <h3>Start Tweeting Now!</h3>
+        <!--  input-->
+        <form>
+            <label for="user">Your user: </label>
+            <br>
+            <textarea id="tweet" name="tweet" placeholder="share your thoughts" style="width:100%;padding:10px;"required></textarea >
+            <br>
+            <input type="hidden" name="did_submit" value="true">
+            <!-- button -->
+            <input type="submit" value="Submit">
+        </form>
+    </div>
     <style>
     .container{
          width: 700px;
@@ -27,18 +41,6 @@
 <div class="container">
 <h1>Create a new post!</h1>
 
-<form>
-    <div class="form-group">
-        <label for="tweet">Write a tweet</label>
-        <textarea id="tweet" class="form-control" aria-describedby="passwordHelpInline" placeholder="Type here"></textarea>
-        <small id="passwordHelpInline" class="text-muted">
-            Must be under 150 words.
-        </small>
-    </div>
-    <div class="action-button">
-        <button type="submit" class="btn btn-info">Post</button>
-    </div>
-</form>
 
 </div>
 </body>

@@ -32,6 +32,13 @@ db = SQLAlchemy(app)
 app.secret_key = "According to all known laws of aviation, there is no way a bee should be able to fly."
 
 
+
+    #repr is a representation of the object.
+def __repr__(self):
+        #f"..." is string formatting.
+        return f"comment data: {self.tweet}"
+
+db.create_all();
 @app.route('/')
 def index():
     return render_template("home.html")
