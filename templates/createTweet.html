@@ -2,8 +2,37 @@
 {% block content %}
 <head>
     <title>New Tweet</title>
+    <style>
+    .container{
+         width: 700px;
+         height: 800px;
+         padding: 40px;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%,-50%);
+         text-align: center;
+    }
+    .container textarea[type=text] {
+          transition: .3s box-shadow;
+          height: 200px;
+    }
+    </style>
 </head>
 <body>
+<div class="container">
 <h1>Create a new post!</h1>
+
+<form>
+    <div class="form-group">
+        <label for="tweet">Write a tweet</label>
+        <textarea type="text" id="tweet" class="form-control" aria-describedby="passwordHelpInline" placeholder="Type here"></textarea>
+        <small id="passwordHelpInline" class="text-muted">
+            Must be under 150 words.
+        </small>
+    </div>
+</form>
+
+</div>
 </body>
 {% endblock %}

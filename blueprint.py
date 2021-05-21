@@ -51,8 +51,3 @@ def login():
 @blueprint.route('/signup')
 def signup():
     return "Signup Here. Assigned to Nivu"
-
-
-@blueprint.route('/newpost')
-def newpost():
-    return render_template("newpost.html")
