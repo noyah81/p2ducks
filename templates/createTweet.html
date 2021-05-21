@@ -13,9 +13,13 @@
          transform: translate(-50%,-50%);
          text-align: center;
     }
-    .container textarea[type=text] {
+    .container textarea{
           transition: .3s box-shadow;
           height: 200px;
+    }
+    .container button[type=submit]{
+        background-color: #51a2e8;
+        border-color: #51a2e8;
     }
     </style>
 </head>
@@ -26,10 +30,13 @@
 <form>
     <div class="form-group">
         <label for="tweet">Write a tweet</label>
-        <textarea type="text" id="tweet" class="form-control" aria-describedby="passwordHelpInline" placeholder="Type here"></textarea>
+        <textarea id="tweet" class="form-control" aria-describedby="passwordHelpInline" placeholder="Type here"></textarea>
         <small id="passwordHelpInline" class="text-muted">
             Must be under 150 words.
         </small>
+    </div>
+    <div class="action-button">
+        <button type="submit" class="btn btn-info">Post</button>
     </div>
 </form>
 
