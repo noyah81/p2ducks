@@ -9,8 +9,19 @@
 <div class="card">
     <img src="img_avatar.png" alt="Avatar" style="width:100%">
     <div class="container">
-        <h4><b>John Doe</b></h4>
-        <p>Architect & Engineer</p>
+        <div>
+            <h1 style="display:inline-block;"><strong>{{user["name"]}}</strong></h1>
+        </div>
+        <p>@{{user["username"]}}</p>
+        <p style="max-width: 50%">
+            {{user["bio"]}}
+        </p>
+        <!--
+        <div class="editButton">
+            Change Photo
+            <input type="file" name="file"/>
+        </div>
+        -->
     </div>
 </div>
 
