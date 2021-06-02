@@ -6,15 +6,15 @@ import json
 
 
 url = "https://www.episodate.com/api/most-popular?page=1"
-response = requests.request("GET", url)
-#print(type(response))
+responseJsonObj = requests.request("GET", url)
+#print(type(responseJsonObj))
 
-responseJsonObj = json.loads(response)
+library = json.loads(responseJsonObj.text)
 #print(type(responseJsonObj))
 
 
 showList1 = []
-for data in responseJsonObj['tv_shows']:
+for data in library['tv_shows']:
     showList1.append(data['name'])
 #print(showList1)
 n = 1
