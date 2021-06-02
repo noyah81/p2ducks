@@ -13,7 +13,7 @@ Scrum Board: [here](https://github.com/noyah81/p2ducks/projects/1)
 Project Plan: [here](https://docs.google.com/document/d/116Wt0SjYg3Qs0tVatOE36yF8bYnRhermPScTxo2H6Kc/edit?usp=sharing)
 
 ## Project Summary
-We're building a Twitter Clone for DNHS students called Hawkers!
+Hawkers is a rising social media platform created to be a Twitter-esque form of media for students and faculty at Del Norte High School. Users will have the ability to create profiles, tweets, and personalize their individual pages. They can view other user's tweets - or search for them - and interact by liking posts. 
 
 ### Tri3 Minilab
 ##### All mini-labs can be found in a subsection under templates. The individual repositories linked below are for code testing and revisions before finalizing commits to the scrum repository.
