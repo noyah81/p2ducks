@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 # import from blueprints
 from templates.minilabs.sarah.sarah import sarah
-from templates.minilabs.maggie.maggie_minilab import maggie
+from templates.minilabs.maggie.maggie import maggie
 from templates.minilabs.nivu.nivu import nivu
 from templates.minilabs.akhil.akhil import akhil
 from templates.minilabs.noya.noya import noya
@@ -32,6 +32,13 @@ db = SQLAlchemy(app)
 app.secret_key = "According to all known laws of aviation, there is no way a bee should be able to fly."
 
 
+
+    #repr is a representation of the object.
+def __repr__(self):
+        #f"..." is string formatting.
+        return f"comment data: {self.tweet}"
+
+db.create_all()
 @app.route('/')
 def index():
     return render_template("home.html")
