@@ -59,12 +59,11 @@ form, .content {
   border: 1px solid #3c763d;
   margin-bottom: 20px;
 }
-<style>
     {% include 'formStyles.html' %}
 </style>
-<form action="/newuser/" method="post" id="sign-up">
+<form action="/newuser/" method="post" id="sign-up" style="width:60vw;">
     <h1>Sign Up</h1>
-    <div style="display:grid; grid-template-columns: 1fr 1fr; grid-column-gap: 50px;">
+    <div style="display:grid;grid-template-columns: 1fr 1fr; grid-column-gap: 50px;">
         <fieldset>
             <!-- made these fields required -->
             <legend><span class="number">1</span> Your basic info</legend>

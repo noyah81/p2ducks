@@ -1,27 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 <head>
-    <title>New Tweet</title>
-    </div>
-    <div class="lower" style="margin-top:160px; margin-bottom:160px; width:50%; margin-left:auto; margin-right:auto; background-color:#d5e2ed;padding:50px; border-radius:20px; box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.2);">
-        <h3>Start Tweeting Now!</h3>
-        <!--  input-->
-        <form method="POST" action="/createTweet">
-            <label for="user">Your tweet: </label>
-            <br>
-            <textarea autofocus="true" id="tweet" name="tweet" placeholder="share your thoughts" style="width:100%;padding:10px;"required></textarea >
-            <br>
-            <!-- button -->
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+
     <style>
     .container{
          width: 700px;
-         height: 800px;
+         height: 80px;
          padding: 40px;
          position: absolute;
-         top: 50%;
+         top: 0%;
          left: 50%;
          transform: translate(-50%,-50%);
          text-align: center;
@@ -37,16 +24,25 @@
     </style>
 </head>
 <body>
+
 <div class="container">
 <h1>Create a new post!</h1>
 </div>
-<h6>TEMPORARY DISPLAY OF TWEETS (will remove later)</h6>
-{% for usr in tweets %}
-<p>
-    <span>{{usr.tweetid}}</span> &nbsp;
-    <span>{{usr.tweet}}</span> &nbsp;
-</p>
-{% endfor %}
+<title>New Tweet</title>
+<div class="lower" style="margin-top:160px; margin-bottom:160px; width:50%; margin-left:auto; margin-right:auto; background-color:#d5e2ed;padding:50px; border-radius:20px; box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.2);">
+    <h3>Start Tweeting Now!</h3>
+    <!--  input-->
+    <form method="POST" action="/createTweet">
+        <label for="tweet">Your tweet: </label>
+        <br>
+        <textarea autofocus="true" id="tweet" name="tweet" placeholder="share your thoughts" style="width:100%;padding:10px;"required></textarea >
+        <br>
+        <!-- button -->
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
 
 </body>
 {% endblock %}
+
