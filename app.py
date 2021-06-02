@@ -1,5 +1,5 @@
-from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, request, session
 
 # import classes from blueprints
 
@@ -31,9 +31,15 @@ db = SQLAlchemy(app)
 # set up the session
 app.secret_key = "According to all known laws of aviation, there is no way a bee should be able to fly."
 
+class Tweet(db.Model):
+    tweetid = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    tweet = db.Column(db.String(255), unique=False, nullable=False)
+    username = db.Column(db.String(255), unique=True, nullable=True) #change to false later
 
+    def __repr__(self):
+        return '<Tweet %r>' % self.tweetid
 
-    #repr is a representation of the object.
+#repr is a representation of the object.
 def __repr__(self):
         #f"..." is string formatting.
         return f"comment data: {self.tweet}"
@@ -44,9 +50,17 @@ def index():
     return render_template("home.html")
 
 
-@app.route('/createTweet')
+@app.route('/createTweet', methods=["GET", "POST"])
 def createTweet():
-    return render_template("createTweet.html")
+    tweets = None
+    if request.form:
+        postdata = Tweet(tweetid=request.form.get("tweetid"), tweet=request.form.get("tweet"),
+                    username=request.form.get("username"))
+        db.session.add(postdata)
+        db.session.commit()
+    tweets = Tweet.query.all()
+    print(tweets.count)
+    return render_template("createTweet.html", tweets=tweets)
 
 
 @app.route('/liked', methods=['POST', 'GET'])

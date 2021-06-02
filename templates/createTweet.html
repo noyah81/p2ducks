@@ -6,12 +6,11 @@
     <div class="lower" style="margin-top:160px; margin-bottom:160px; width:50%; margin-left:auto; margin-right:auto; background-color:#d5e2ed;padding:50px; border-radius:20px; box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.2);">
         <h3>Start Tweeting Now!</h3>
         <!--  input-->
-        <form>
-            <label for="user">Your user: </label>
+        <form method="POST" action="/createTweet">
+            <label for="user">Your tweet: </label>
             <br>
-            <textarea id="tweet" name="tweet" placeholder="share your thoughts" style="width:100%;padding:10px;"required></textarea >
+            <textarea autofocus="true" id="tweet" name="tweet" placeholder="share your thoughts" style="width:100%;padding:10px;"required></textarea >
             <br>
-            <input type="hidden" name="did_submit" value="true">
             <!-- button -->
             <input type="submit" value="Submit">
         </form>
@@ -40,8 +39,14 @@
 <body>
 <div class="container">
 <h1>Create a new post!</h1>
-
-
 </div>
+<h6>TEMPORARY DISPLAY OF TWEETS (will remove later)</h6>
+{% for usr in tweets %}
+<p>
+    <span>{{usr.tweetid}}</span> &nbsp;
+    <span>{{usr.tweet}}</span> &nbsp;
+</p>
+{% endfor %}
+
 </body>
 {% endblock %}
