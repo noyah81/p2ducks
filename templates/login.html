@@ -2,7 +2,6 @@
 {% block content %}
 
 <head>
-    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Plain Login</title>
@@ -11,272 +10,82 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i" rel="stylesheet">
     <title>Hawkers | Login</title>
     <style>
-        html {
-            margin: 0;
-            padding: 0;
+        .header {
+          width: 30%;
+          margin: 50px auto 0px;
+          color: white;
+          background: #88bb39;
+          text-align: center;
+          padding: 20px;
         }
-        body {
-            font-family: 'PT Sans', sans-serif !important;
-            margin: 0;
-            padding: 40px 0;
-            font-size:100%;
-            letter-spacing: 1px;
+        form, .content {
+          width: 30%;
+          margin: 0px auto;
+          padding: 20px;
+          border: 1px solid #B0C4DE;
+          background: white;
         }
-
-        textarea:focus, input:focus, select:focus, select:active{
-            outline: none;
-            box-shadow:none;
+        .input-group {
+          margin: 10px 0px 10px 0px;
         }
-
-        .form-control:focus {
-            box-shadow: none;
-            outline: 0 none;
+        .input-group label {
+          display: block;
+          text-align: left;
+          margin: 3px;
         }
-
-        a{
-            text-decoration: none;
+        .input-group input {
+          height: 30px;
+          width: 93%;
+          padding: 5px 10px;
+          font-size: 16px;
+          border-radius: 5px;
+          border: 1px solid gray;
         }
-
-        .btn.active.focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn:active:focus, .btn:focus {outline: none;}
-        a,h1,h2,h3,h4,h5{cursor: pointer;}
-        a:focus, a:hover{text-decoration: none;}
-        a:focus {outline: none; outline-offset: 0;}
-        ul{list-style: none;}
-        .placeholder-fix:focus::-webkit-input-placeholder  {color:transparent !important; }
-        .placeholder-fix:focus::-moz-placeholder   {color:transparent !important;}
-        .placeholder-fix:-moz-placeholder   {color:transparent !important;}
-
-        .logo h2 {
-            font-size: 24px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: 900;
-            padding-bottom:40px;
-            color: #fff;
+        .btn {
+          padding: 10px;
+          font-size: 15px;
+          color: white;
+          background: #88bb39;
+          border: none;
         }
-
-        .content{
-            background-color:white;
-            text-align: center;
+        .error {
+          width: 92%;
+          margin: 0px auto;
+          padding: 10px;
+          border: 1px solid #a94442;
+          color: #a94442;
+          background: #f2dede;
+          text-align: left;
         }
-
-        .login-page {
-            background-color: #fff;
-            box-shadow: 0 0 20px 10px rgba(38, 50, 56, 0.08);
-            margin: 0 auto;
-            width: 460px;
+        .success {
+          color: #3c763d;
+          background: #dff0d8;
+          border: 1px solid #3c763d;
+          margin-bottom: 20px;
         }
-
-        .login-page h3 {
-            background-color: #88bb39;
-            color: black;
-            font-size: 22px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin: 0;
-            padding: 30px;
-            text-align: left;
-            text-transform: capitalize;
-        }
-
-        .login-page .form-control {
-            background-color: #f0eef0 !important;
-            background-image: none;
-            border: 1px solid #88bb39;
-            border-radius: 5px;
-            color: #1e3953;
-            display: block;
-            font-size: 14px;
-            height: 35px;
-            letter-spacing: 1px;
-            margin: 0 auto 15px;
-            padding: 6px 10px;
-            width: 300px;
-            font-weight: 600;
-            margin-left: 90px
-        }
-
-        .action-button button{
-            width:300px;
-            margin: 0 auto;
-            margin-left: 90px
-        }
-
-        button {
-            background: rgb(136, 187, 57) none repeat scroll 0 0;
-            border: medium none;
-            border-radius: 5px;
-            color: black;
-            font-size: 16px;
-            font-weight: 600;
-            margin-right: 10px;
-            padding: 8px 20px;
-        }
-
-        .input-value input:first-child{
-            background: url(../images/user.png);
-            background-repeat: no-repeat;
-            background-position: right center;
-            background-origin: content-box;
-        }
-
-        .input-value input:last-child{
-            background: url(../images/psw.png);
-            background-repeat: no-repeat;
-            background-position: right center;
-            background-origin: content-box;
-        }
-
-        form {
-            padding: 50px 0 20px;
-        }
-
-        .form-control::-moz-placeholder {
-            color: #1e3953;
-            font-weight: 600;
-            opacity: 1;
-        }
-
-        .form-control::-webkit-input-placeholder{
-            color: #1e3953;
-            font-weight: 600;
-            opacity: 1;
-        }
-
-        .input-value {
-            padding: 0px 0 10px;
-        }
-
-        .page-links {
-            padding: 0;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .page-links li{
-            display: inline-block;
-        }
-
-        .page-links a {
-            color: rgb(30,57,83);
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .social-icon{
-            margin: 50px 0;
-        }
-
-        .social-icon a{
-            margin-right: 5px;
-        }
-
-
-        /*media query*/
-        @media (max-width: 700px){
-            .login-page .form-control {
-                font-size: 13px;
-                height: 30px;
-                width: 250px;
-            }
-
-            .login-page {
-                width: 400px;
-            }
-
-            .login-page h3 {
-                font-size: 18px;
-                padding: 20px;
-            }
-            .action-button button {
-                margin: 0 auto;
-                width: 250px;
-            }
-
-            form {
-                padding: 30px 0 1px;
-            }
-
-            .logo h2 {
-                padding-bottom: 20px;
-            }
-
-            .social-icon {
-                margin: 40px 0;
-            }
-
-            button{
-                font-size: 15px;
-            }
-
-            .page-links a {
-                font-size: 14px;
-            }
-
-            .page-links {
-                padding: 10px 0;
-            }
-        }
-
-        @media (max-width: 370px){
-            .login-page {
-                width: 280px;
-            }
-
-            .login-page .form-control {
-                font-size: 12px;
-                height: 25px;
-                width: 200px;
-                margin: 0 auto 10px;
-            }
-
-            .action-button button {
-                margin: 0 auto;
-                width: 200px;
-            }
-
-            .page-links a {
-                font-size: 13px;
-            }
-
-            button {
-                font-size: 14px;
-                padding: 8px;
-            }
-
-            .page-links {
-                padding: 0;
-            }
-        }
-
     </style>
 </head>
-<body class="content">
-<header>
-    <div class="logo text-center">
-        <h2>Logo</h2>
+<body>
+<div class="header">
+    <h2>Login</h2>
+</div>
+
+<form method="post" action="login">
+    <?php include('errors.php'); ?>
+    <div class="input-group">
+        <label>Username</label>
+        <input type="text" name="username">
     </div>
-</header>
-<section id="login-page">
-    <div class="row">
-        <div class="login-page text-center">
-            <h3 class="tagline">Login Form</h3>
-            <form action="#" method="post">
-                <div class="row">
-                    <div class="input-value">
-                        <input class="form-control placeholder-fix" type="text" placeholder="Username" name="uname" required>
-                        <input class="form-control placeholder-fix" type="password" placeholder="Password" name="psw" required>
-                    </div>
-                    <div class="action-button">
-                        <button class="btn-block" type="submit">Login</button>
-                    </div>
-                </div>
-                <ul class="page-links">
-                    <li><button class="btn-block" type="submit" href="/signup">Sign Up</button></li>
-                </ul>
-            </form>
-        </div>
+    <div class="input-group">
+        <label>Password</label>
+        <input type="password" name="password">
     </div>
-</section>
+    <div class="input-group">
+        <button type="submit" class="btn" name="login">Login</button>
+    </div>
+    <p>
+        Not yet a member? <a href="/signup">Sign up</a>
+    </p>
+</form>
 </body>
 {% endblock %}

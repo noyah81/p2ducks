@@ -5,103 +5,86 @@
     <title>Hawkers | Signup</title>
 </head>
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box}
 
-/* Full-width input fields */
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-}
-
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
-
-/* Set a style for all buttons */
-button {
-  background-color: #04AA6D;
+.header {
+  width: 30%;
+  margin: 50px auto 0px;
   color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
+  background: #88bb39;
+  text-align: center;
+  padding: 20px;
+}
+form, .content {
+  width: 30%;
+  margin: 0px auto;
+  padding: 20px;
+  border: 1px solid #B0C4DE;
+  background: white;
+}
+.input-group {
+  margin: 10px 0px 10px 0px;
+}
+.input-group label {
+  display: block;
+  text-align: left;
+  margin: 3px;
+}
+.input-group input {
+  height: 30px;
+  width: 93%;
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+.btn {
+  padding: 10px;
+  font-size: 15px;
+  color: white;
+  background: #88bb39;
   border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
 }
-
-button:hover {
-  opacity:1;
+.error {
+  width: 92%;
+  margin: 0px auto;
+  padding: 10px;
+  border: 1px solid #a94442;
+  color: #a94442;
+  background: #f2dede;
+  text-align: left;
 }
-
-/* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-}
-
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  width: 50%;
-}
-
-/* Add padding to container elements */
-.container {
-  padding: 16px;
-}
-
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
-     width: 100%;
-  }
+.success {
+  color: #3c763d;
+  background: #dff0d8;
+  border: 1px solid #3c763d;
+  margin-bottom: 20px;
 }
 </style>
 <body>
+<div class="header">
+    <h2>Register</h2>
+</div>
 
-<form action="/action_page.php" style="border:1px solid #ccc">
-    <div class="container">
-        <h1>Sign Up</h1>
-        <p>Please fill in this form to create an account.</p>
-        <hr>
-
-        <label for="usrnm"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="email" required>
-
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-
-        <label for="psw-repeat"><b>Repeat Password</b></label>
-        <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-
-        <label>
-            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-        </label>
-
-        <div class="clearfix">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <button type="submit" class="signupbtn">Sign Up</button>
-        </div>
+<form action="insert.php" method="POST">
+    <div class="input-group">
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Username">
     </div>
+    <div class="input-group">
+        <label>Password</label>
+        <input type="password" name="password">
+    </div>
+    <div class="input-group">
+        <label>Email</label>
+        <input type="email" name="email">
+    </div>
+    <div class="input-group">
+        <button type="submit" class="btn" name="submit">Register</button>
+    </div>
+    <p>
+        Already a member? <a href="/login">Sign in</a>
+    </p>
 </form>
-
 </body>
+
 {% endblock %}
