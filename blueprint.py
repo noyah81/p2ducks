@@ -43,9 +43,28 @@ def editProfile():
     return "This will allow you to edit your profile. Assigned to Nivu. "
 
 
-@blueprint.route('/login')
+@blueprint.route('/login', methods=['POST', 'GET'])
 def login():
-    return "Login here. Assigned to Nivu"
+    if request.method == "POST":
+        formUser = request.form["username"]
+        resultproxy = db.engine.execute(
+            text("SELECT * FROM users WHERE username=:username;").execution_options(autocommit=True),
+            username=formUser)
+
+        user = convert(resultproxy)
+
+        # troubleshooting
+        if user == False:
+            return render_template("login.html", error=True)
+
+        # set the user id
+        session.clear()
+        session["user_id"] = user["id"]
+
+        # redirects us to the user page
+        return redirect(url_for("user1", usr=user["username"]))
+    else:
+        return render_template("login.html", error=False)
 
 
 @blueprint.route('/signup')
