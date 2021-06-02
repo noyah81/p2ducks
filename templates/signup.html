@@ -59,32 +59,46 @@ form, .content {
   border: 1px solid #3c763d;
   margin-bottom: 20px;
 }
+<style>
+    {% include 'formStyles.html' %}
 </style>
-<body>
-<div class="header">
-    <h2>Sign Up</h2>
-</div>
+<form action="/newuser/" method="post" id="sign-up">
+    <h1>Sign Up</h1>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; grid-column-gap: 50px;">
+        <fieldset>
+            <!-- made these fields required -->
+            <legend><span class="number">1</span> Your basic info</legend>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required placeholder="your name" autofocus>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Username" required>
 
-<form action="insert.php" method="POST" id="sign-up">
-    <div class="input-group">
-        <label>Username</label>
-        <input type="text" name="username" placeholder="Username">
+
+            <!-- same for minlength and maxlength: minlength="8" maxlength="20" we're using JS to do this.-->
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Password" >
+            <label for="confirmation">Confirm Password:</label>
+            <input type="password" id="confirmation" name="confirmation" placeholder="Confirm Password" >
+            <p class="show">show password</p>
+
+            <div class="error">
+                <!-- if the user does not fill out the required elements or has something wrong we can tell the user with this information.-->
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend><span class="number">2</span> Your profile</legend>
+            <label for="bio">Bio:</label>
+            <textarea id="bio" name="bio"></textarea>
+
+            <button type="submit">Sign Up</button>
+
+        </fieldset>
     </div>
-    <div class="input-group">
-        <label>Password</label>
-        <input type="password" name="password">
-    </div>
-    <div class="input-group">
-        <label>Email</label>
-        <input type="email" name="email">
-    </div>
-    <div class="input-group">
-        <button type="submit" class="btn" name="submit">Register</button>
-    </div>
-    <p>
-        Already a member? <a href="/login">Sign in</a>
-    </p>
+
+
+
 </form>
-</body>
 
 {% endblock %}
