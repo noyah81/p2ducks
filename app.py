@@ -128,7 +128,7 @@ def createTweet():
 
 @app.route('/liked', methods=['POST', 'GET'])
 def liked():
-    return render_template("liked.html")
+    return render_template("platform.html")
 
 
 @app.route("/<usr>")
