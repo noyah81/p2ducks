@@ -5,14 +5,29 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         </div>
+
+            <div class="search-container">
+                <form action="/search_results" method="POST">
+                    <input type="text" placeholder="search" name="search">
+                </form>
+            </div>
+
         <div>
             <ul class="nav navbar-nav">
-                <li class="nav-item"><a class="nav-link active" href="/login"g><strong>Login</strong></a></li>
-                <li class="nav-item"><a class="nav-link active" href="/signup"g><strong>Signup</strong></a></li>
-                <li class="nav-item"><a class="nav-link active" href="/liked"><strong>Likes</strong></a></li>
-                <li class="nav-item"><a class="nav-link active" href="/api"><strong>API Integration</strong></a></li>
-                <li class="nav-item"><a class="nav-link active" href="/profile"><strong>Profile</strong></a></li>
-                <li class="nav-item"><a class="nav-link active" href="/createTweet"><strong>Start Tweeting!</strong></a></li>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Tour</a>
+                    <div class="dropdown-menu">
+                        <a class="nav-link active" href="/signup"><strong>Signup</strong></a>
+                        <a class="nav-link active" href="/login"><strong>Login</strong></a>
+                        <a class="nav-link active" href="/profile"><strong>Profile</strong></a>
+                        <a class="nav-link active" href="/createTweet"><strong>Start Tweeting!</strong></a>
+                        <a class="nav-link active" href="/share"><strong>Share on other platforms!</strong></a>
+                    </div>
+
+                </div>
+            <div>
+                <li class="nav-item"><a class="nav-link active" href="/api"><strong>API Integration</strong></a></li></div>
+
             <div class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown">Labs</a>
                 <div class="dropdown-menu">
@@ -27,6 +42,5 @@
             </div>
             </ul>
 
-    </div>
     </div>
 </nav>
