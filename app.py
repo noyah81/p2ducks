@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, request, session
 import sqlite3
+import os
 from sqlite3 import Error
 # import classes from blueprints
 
@@ -24,14 +25,44 @@ app.register_blueprint(noya)
 # Set the SQL database
 dbURI = 'sqlite:///models/myDB.db'
 
-""" database setup to support db examples """
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = dbURI
+''' database setup  '''
+project_dir = os.path.dirname(os.path.abspath(__file__))
+database_file = "sqlite:///{}".format(os.path.join(project_dir, "searching.db"))
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 db = SQLAlchemy(app)
-# set up the session
-app.secret_key = "According to all known laws of aviation, there is no way a bee should be able to fly."
+
+'''app secret key'''
+app.secret_key = 'nighthawks'
+
+class Search(db.Model):
+     searchid = db.Column(db.Integer, primary_key=True, autoincrement=True)
+     menuitem = db.Column(db.String(255), unique=False, nullable=False)
+     link = db.Column(db.String(255), unique=False, nullable=False)
+
+     def __repr__(self):
+         return '<Search %r>' % self.searchid
 
 db.create_all()
+
+''' table creation '''
+db.create_all()
+
+search = Search(menuitem="tweets", link="/createTweet")
+search1 = Search(menuitem="tweet", link="/createTweet")
+search2 = Search(menuitem="share", link="/share")
+search3 = Search(menuitem="sign up", link="/signup")
+search4 = Search(menuitem="login", link="/login")
+search5 = Search(menuitem="home", link="/")
+search6 = Search(menuitem="api", link="/api")
+db.session.add(search)
+db.session.add(search1)
+db.session.add(search2)
+db.session.add(search3)
+db.session.add(search4)
+db.session.add(search5)
+db.session.add(search6)
+db.session.commit()
 
 # create database for tweet display
 @app.route('/')
@@ -126,9 +157,9 @@ def createTweet():
     return render_template("createTweet.html", tweets=tweets)
 
 
-@app.route('/liked', methods=['POST', 'GET'])
+@app.route('/share', methods=['POST', 'GET'])
 def liked():
-    return render_template("platform.html")
+    return render_template("share.html")
 
 
 @app.route("/<usr>")
@@ -150,7 +181,21 @@ def login():
 def signup():
     return render_template("signup.html")
 
-
+@app.route('/search_results', methods=["GET", "POST"])
+def search_results():
+    # function use Flask import (Jinja) to render an HTML template
+    searchkey = None
+    selectedsearch = None
+    if request.form:
+        searchkey = request.form.get("search")
+        print(searchkey)
+        selectedsearch = Search.query.filter_by(menuitem=searchkey).first()
+        return render_template("searchresults.html", data=selectedsearch)
+        #error=selectedsearch
+    else:
+        error = "Invalid Input. Please try again."
+    #return redirect(url_for('landing_page'))
+    return render_template("searchresults.html", error=error)
 
 
 if __name__ == "__main__":
