@@ -1,6 +1,15 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect, url_for
 import sqlite3
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import text
+from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
+from werkzeug.security import check_password_hash, generate_password_hash
+from custom import apology, convert, convertList
+from sqlite3 import Error
+import random
+import requests
+import json
 import os
 from sqlite3 import Error
 # import classes from blueprints
@@ -23,13 +32,17 @@ app.register_blueprint(akhil)
 app.register_blueprint(noya)
 
 # Set the SQL database
-dbURI = 'sqlite:///models/myDB.db'
+dbURI = 'sqlite:///models/DBreal.db'
 
 ''' database setup  '''
-project_dir = os.path.dirname(os.path.abspath(__file__))
-database_file = "sqlite:///{}".format(os.path.join(project_dir, "searching.db"))
-app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = database_file
+#project_dir = os.path.dirname(os.path.abspath(__file__))
+#database_file = "sqlite:///{}".format(os.path.join(project_dir, "searching.db"))
+#app = Flask(__name__)
+#app.config["SQLALCHEMY_DATABASE_URI"] = database_file
+
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = dbURI
 db = SQLAlchemy(app)
 
 '''app secret key'''
@@ -154,32 +167,152 @@ def createTweet():
         #db.session.commit()
     #tweets = Tweet.query.all()
     #print(tweets.count)
-    return render_template("createTweet.html", tweets=tweets)
+    if request.method == "POST":
+        db.engine.execute(
+            text("INSERT INTO tweet (tweetContent, user) VALUES (:tweet, :user);").execution_options(autocommit=True),
+            tweet=request.form.get("tweet"),
+            user=session["user_id"]
+        )
 
+        resultproxy = db.engine.execute (
+            text("SELECT * FROM users WHERE id=:id;").execution_options(autocommit=True),
+            id=session["user_id"]
+        )
+        user = convert(resultproxy)
+        return redirect(url_for("userProfile", usr=user["username"]))
+    else:
+        return render_template("createTweet.html", tweets=tweets)
 
-@app.route('/share', methods=['POST', 'GET'])
+@app.route('/liked', methods=['POST', 'GET'])
 def liked():
-    return render_template("share.html")
+    return render_template("liked.html")
 
+@app.route('/newuser/', methods=["GET", "POST"])
+def new_user():
+    """Register user"""
+    if request.method == "POST":
+        # Make sure they put in their username
+        if not request.form.get("username"):
+            return apology("must provide username", 403)
 
-@app.route("/<usr>")
-def userProfile(usr):
-    return render_template("profile.html")
+        # Make sure they put in a password
+        elif not request.form.get("password"):
+            return apology("must provide password", 403)
 
+        # Make sure the passwords match
+        elif request.form.get("password") != request.form.get("confirmation"):
+            return apology("passwords must match", 403)
+
+        fullname = request.form.get("name")
+        print(request.form.get("bio") == '')
+
+        # Insert all the values into the database
+        db.engine.execute(
+            text("INSERT INTO users (username, hash, name, bio) VALUES (:user, :hash, :name, :bio);").execution_options(
+                autocommit=True),
+            user=request.form.get("username"),
+            hash=generate_password_hash(request.form.get("password")),
+            name=fullname, bio=request.form.get("bio"))
+
+        return redirect("/login")
+    else:
+        return render_template("signup.html")
 
 @app.route('/editProfile', methods=["GET", "POST"])
 def editProfile():
     return render_template("editProfile.html")
 
 
-@app.route('/login')
+@app.route('/share', methods=['POST', 'GET'])
+def share():
+    return render_template("share.html")
+
+
+@app.route("/<usr>")
+def userProfileBad(usr):
+    return redirect("/login")
+
+
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-    return render_template("login.html")
+    if request.method == "POST":
+        formUser = request.form["username"]  # using name as dictionary key
+        resultproxy = db.engine.execute(
+            text("SELECT * FROM users WHERE username=:username;").execution_options(autocommit=True),
+            username=formUser)
+
+        user = convert(resultproxy)
+
+        # troubleshooting
+        if user == False:
+            return render_template("login.html", error=True)
+
+        # set the user id
+        session.clear()
+        session["user_id"] = user["id"]
+
+        # redirects us to the user page
+        return redirect(url_for("userProfile", usr=user["username"]))
+    else:
+        return render_template("login.html", error=False)
 
 
 @app.route('/signup')
 def signup():
-    return render_template("signup.html")
+    return redirect('/newuser/')
+
+
+@app.route('/api')
+def api():
+    print("test")
+    url = "http://self.pieceofthepi.cf/Food/" + str(random.randint(1,7))
+    print(url)
+    response = requests.request("GET", url)
+    print(response)
+    formatted = json.loads(response.text)
+    return render_template("pizza.html", pizza=formatted)
+
+@app.route("/profile")
+def redirectProfile():
+    try:
+        resultproxy = db.engine.execute(
+            text("SELECT * FROM users WHERE id=:id;").execution_options(autocommit=True),
+            id=session["user_id"])
+        user = convert(resultproxy)
+        return redirect(url_for("userProfile", usr=user["username"]))
+    except:
+        return redirect('/login')
+
+@app.route("/profile/<usr>")
+def userProfile(usr):
+    # compute rows
+    resultproxy = db.engine.execute(
+        text("SELECT * FROM users WHERE username=:username;").execution_options(autocommit=True),
+        username=usr)
+
+    user = convert(resultproxy)
+    if user["username"] == "noUser":
+        return redirect('/login')
+    elif user == False:
+        user = {'id': 404, 'username': 'iDontExist',
+                'hash': 'password hash',
+                'name': 'That user does not exist!', 'bio': "You probably typed a name in the search bar. The user "
+                                                            "you searched for either doesn't exist or deleted their "
+                                                            "account"}
+    # get the users playlists
+    userTweets = db.engine.execute(
+        text("SELECT * FROM tweet WHERE user=:user;").execution_options(autocommit=True),
+        user=user["id"])
+    userTweets = convertList(userTweets)
+    print(userTweets)
+
+    # find out if it is the current user
+    currentUser = False
+    if user["id"] == session["user_id"]:
+        currentUser = True
+
+    return render_template("profile.html", user=user, tweets=userTweets, currentUser=currentUser)
+
 
 @app.route('/search_results', methods=["GET", "POST"])
 def search_results():
