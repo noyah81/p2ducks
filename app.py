@@ -330,6 +330,10 @@ def search_results():
     #return redirect(url_for('landing_page'))
     return render_template("searchresults.html", error=error)
 
+@app.route('/temp', methods=["GET", "POST"])
+def temp():
+    return render_template("api.html")
+
 
 if __name__ == "__main__":
     # runs the application on the repl development server

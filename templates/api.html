@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+{% set id = data["id"] %}
+{% set restaurant = data["restaurant"] %}
+{% set name = data["name"] %}
+{% set user = data["user"] %}
+{% set time = data["time"] %}
+{% set stars = data["stars"] %}
+{% set description = data["description"] %}
+<div style="display: none">
+    <!-- to hide all of the jinja variables-->
+    {{id}}
+    {{user}}
+    {{time}}
+</div>
+<div style="margin-left: 15px">
+    <h1 >API pulling</h1>
+    <!------ Include the above in your HEAD tag ---------->
+    <!--
+    Author : Maniruzzaman Akash
+    Email  : manirujjamanakash@gmail.com
+    -->
+    <!--To Work with icons-->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <div class="container">
+        <h2 class="text-center">Bootstrap 4 User Rating Form / Comment Form <a style="font-size: 20px" href="https://bootsnipp.com/snippets/M5obX" target="_blank">Template Used</a></h2>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+                        <!--<p class="text-secondary text-center">15 Minutes Ago</p>-->
+                    </div>
+                    <div class="col-md-10">
+                        <p id="header_ratings">
+                            <g class="float-left"><strong>{{restaurant}} - {{name}}</strong></g>
+                            <input id="star_count" hidden value={{stars}}>
+                        </p>
+                        <div class="clearfix"></div>
+                        <p>{{description}}</p>
+                        <!--<p>
+                            <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
+                            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                        </p>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //getting count of stars from jinja
+    var countStar = document.getElementById("star_count");
+    //getting line of code to append to
+    var headerEl = document.getElementById("header_ratings");
+    console.log(countStar.value);
+    for (var i = 0; i < countStar.value; i++){
+        //creating the span tag to contain the italics tag
+        new_span = document.createElement("SPAN");
+        new_span.setAttribute("class", "float-right");
+        //creating the italics with the star class
+        new_icon = document.createElement("I");
+        new_icon.setAttribute("class", "text-warning fa fa-star");
+        //appending the icons to the header
+        headerEl.appendChild(new_span)
+        new_span.appendChild(new_icon)
+    }
+</script>
+
+{% endblock %}
