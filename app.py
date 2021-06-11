@@ -265,7 +265,7 @@ def signup():
 @app.route('/api')
 def api():
     print("test")
-    url = "http://self.pieceofthepi.cf/Food/" + str(random.randint(1,7))
+    url = "http://pieceofthepi.pusdcoders.tk/Food/" + str(random.randint(1,7))
     print(url)
     response = requests.request("GET", url)
     print(response)
@@ -330,9 +330,9 @@ def search_results():
     #return redirect(url_for('landing_page'))
     return render_template("searchresults.html", error=error)
 
-@app.route('/temp', methods=["GET", "POST"])
-def temp():
-    return render_template("api.html")
+@app.route('/pullApi', methods=["GET", "POST"])
+def apiPull():
+    return render_template("apiPull.html")
 
 
 if __name__ == "__main__":
