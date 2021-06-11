@@ -330,11 +330,15 @@ def search_results():
     #return redirect(url_for('landing_page'))
     return render_template("searchresults.html", error=error)
 
-@app.route('/pullApi', methods=["GET", "POST"])
+@app.route('/apipull', methods=["GET", "POST"])
 def apiPull():
-     userTweets = db.engine.execute(
-        text("SELECT * FROM tweet").execution_options(autocommit=True))
-    return render_template("apiPull.html")
+    userTweets = db.engine.execute(text("SELECT * FROM tweet").execution_options(autocommit=True))
+    users = db.engine.execute(text("SELECT * FROM users").execution_options(autocommit=True))
+    userTweets = convertList(userTweets)
+    users = convertList(users)
+    print(users)
+    print(userTweets)
+    return render_template("apiPull.html", users=users, userTweets=userTweets)
 
 
 if __name__ == "__main__":
