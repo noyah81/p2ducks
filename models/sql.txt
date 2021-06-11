@@ -1,0 +1,52 @@
+
+
+DROP TABLE IF EXISTS `tweet`;
+CREATE TABLE `tweet` (
+  `tweetid` integer PRIMARY KEY AUTOINCREMENT,
+  `tweetContent` TEXT NOT NULL,
+  `user` INTEGER NOT NULL
+);
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `id` integer PRIMARY KEY AUTOINCREMENT,
+  `username` TEXT NOT NULL,
+  `hash` TEXT NOT NULL,
+  `name` TEXT NOT NULL,
+  `bio` TEXT NOT NULL
+);
+
+/*
+INSERT INTO `tweet` 
+(`tweetContent`, `username`, `user`)
+VALUES 
+('ahahahhahahaa this is my tweet Im really good ahahahaha', 'hehe', 17);
+
+
+<!--
+<h6>TEMPORARY DISPLAY OF TWEETS (will remove later)</h6>
+{% for usr in tweets %}
+<p>
+    <span>{{usr.tweetid}}</span> &nbsp;
+    <span>{{usr.tweet}}</span> &nbsp;
+</p>
+{% endfor %}
+-->
+
+
+
+@app.route('/createTweet', methods=["GET", "POST"])
+def createTweet():
+    #tweets = None
+    #if request.form:
+        #postdata = Tweet(tweetid=request.form.get("tweetid"), tweet=request.form.get("tweet"),
+                    #username=request.form.get("username"))
+        #db.session.add(postdata)
+        #db.session.commit()
+    #tweets = Tweet.query.all()
+    #print(tweets.count)
+    return render_template("createTweet.html", tweets=tweets)
+
+
+
+*/
