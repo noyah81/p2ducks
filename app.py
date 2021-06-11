@@ -332,6 +332,8 @@ def search_results():
 
 @app.route('/pullApi', methods=["GET", "POST"])
 def apiPull():
+     userTweets = db.engine.execute(
+        text("SELECT * FROM tweet").execution_options(autocommit=True))
     return render_template("apiPull.html")
 
 
