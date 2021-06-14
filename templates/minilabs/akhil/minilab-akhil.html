@@ -4,6 +4,21 @@
     <title>Akhilesh's MiniLab</title>
 </head>
 
+<body>
+
+<div>
+    <h1>Digital Portfolio</h1>
+    <p>Links:</p>
+    <a href="https://github.com/noyah81/p2ducks">Github</a> </br>
+    <a href="https://github.com/noyah81/p2ducks/projects/1">Scrum Board</a> </br></br>
+
+    <h1>Minilabs</h1>
+    <h4>Algorithm Minilab</h4>
+    <p>The first minilab is the Algorithm minilab. It uses an algorithm to find the absolute value of any inputed number.</p></br>
+    <h4>Bubble Sort Minilab</h4>
+    <p>The second minilab is the Bubble Sort minilab. It uses a bubble sort method to arrange a list of numbers in numerical order.</p></br>
+</div>
+
 <div class="container">
 
     <div class="center-block" style="margin: 2% 5% 5%; font-family: gilroy,serif;">
@@ -36,9 +51,52 @@
         <div class="col-12" style="text-align: left; ">
             <h3 style = "color:color"> Absolute Value: {{absolutevalue.number}}</h3>
         </div>
-
     </div>
 </div>
+
+<div>
+    <h1>Bubbble Sort Minilab</h1>
+    <p>Choose one of the following to create a list of numbers:</p>
+
+    <button onclick="createList();" id="display">Input Numbers</button>
+    <p id ="outputnumber">4,1,2,3</p>
+    <button onclick="createSortedArray()" id = "bubble">Bubble sort!</button>
+
+    <script>
+        function bubbleSort(arrayToSort) {
+          var swapped;
+          do {
+            swapped = false;
+            for (var i = 0; i < arrayToSort.length - 1; i++) {
+              if (arrayToSort[i] > arrayToSort[i + 1]) {
+                var temp = arrayToSort[i];
+                arrayToSort[i] = arrayToSort[i + 1];
+                arrayToSort[i + 1] = temp;
+                swapped = true;
+              }
+            }
+          } while (swapped);
+        }
+
+
+        function createList() {
+            var number = prompt("Enter a maximum of 20 numbers, seperated by a comma");
+            document.getElementById("outputnumber").innerText = number;
+        }
+
+        function createSortedArray() {
+            var list = document.getElementById("outputnumber").innerText.split(",").map(Number);
+            bubbleSort(list);
+            document.getElementById("outputnumber").innerText = list;
+        }
+    </script>
+</div>
+
+
+</body>
+
+
+
 
 
 {% endblock %}
