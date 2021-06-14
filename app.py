@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 import sqlite3
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import text
@@ -330,15 +330,17 @@ def search_results():
     #return redirect(url_for('landing_page'))
     return render_template("searchresults.html", error=error)
 
-@app.route('/apipull', methods=["GET", "POST"])
-def apiPull():
+@app.route('/apipull/tweets', methods=["GET", "POST"])
+def apiPullTweets():
     userTweets = db.engine.execute(text("SELECT * FROM tweet").execution_options(autocommit=True))
-    users = db.engine.execute(text("SELECT * FROM users").execution_options(autocommit=True))
     userTweets = convertList(userTweets)
+    return jsonify(userTweets)
+
+@app.route('/apipull/users', methods=["GET", "POST"])
+def apiPullUsers():
+    users = db.engine.execute(text("SELECT * FROM users").execution_options(autocommit=True))
     users = convertList(users)
-    print(users)
-    print(userTweets)
-    return render_template("apiPull.html", users=users, userTweets=userTweets)
+    return jsonify(users)
 
 
 if __name__ == "__main__":
