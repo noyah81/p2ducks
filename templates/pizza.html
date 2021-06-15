@@ -40,15 +40,14 @@
     <div class="profile">
         <div style="padding:50px; width:100%; margin:20px; ">
             <div class="basic" style="background-color:white;">
-                <h1 style="display:inline-block;"><strong>CrossOver Team</strong></h1>
+                <h1 style="display:inline-block;"><strong>Pizza! Courtesy of our CrossOver Team</strong></h1>
 
             <p>P2 WAVES</p>
             <p style="max-width: 50%">
-                From : <a href="http://www.pieceofthepi.cf/">http://www.pieceofthepi.cf/</a>
+                From : <a href="https://pieceofthepi.nighthawkcodingsociety.com">https://pieceofthepi.nighthawkcodingsociety.com</a>
             </p>
             <p>
-                <a href="/apipull/tweets" >Click here to see our API for Tweets</a>
-                <a href="/apipull/users" >Click here to see our API for Users</a>
+                P2 Waves created a pizza social media site. Through our site, you can leave pizza related reviews, or generate a random review.
             </p>
             </div>
             <!--
@@ -59,12 +58,23 @@
             -->
 
             <div class="basic">
-                <h3>Pizza Place: {{pizza["restaurant"]}}</h3>
+                <h2>View a Random Review</h2>
+                <h4>Pizza Place: {{pizza["restaurant"]}}</h4>
                 <h4>Customer Name: {{pizza["name"]}}</h4>
                 <p> User: {{ pizza["user"] }}</p>
                 <p> Time: {{ pizza["time"] }}</p>
                 <p> Rating: {{ pizza["stars"] }} stars</p>
                 <p> Description: {{ pizza["description"] }}</p>
+            </div>
+
+            <div class="basic">
+                <h2>Write a Review</h2>
+                <p>Click <a href="/api_form_POST">here</a> to write your own pizza-related review</p>
+            </div>
+
+            <div class="basic">
+                <h2>Check out our API</h2>
+                <p>Click <a href="/api_form_POST">here</a> to write your own pizza-related review</p>
             </div>
 
 

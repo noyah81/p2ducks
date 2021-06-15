@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+<body>
+<!--
+review = RatingFood(
+            id=userid,
+            restaurant=restaurant,
+            name=name,
+            user=user,
+            time=now,
+            stars=stars,
+            description=description
+        )
+-->
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<div style="margin-left: 15px">
+
+    <!------ Include the above in your HEAD tag ---------->
+
+    <!--
+    Author : Maniruzzaman Akash
+    Email  : manirujjamanakash@gmail.com
+    -->
+
+    <!--To Work with icons-->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <form action="/api_form_POST" method="POST">
+        <div class="container">
+            <h2 class="text-center">Review Form POST to API<a style="font-size: 20px" href="https://bootsnipp.com/snippets/M5obX" target="_blank">Template Used</a></h2>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+                            <!--<p class="text-secondary text-center">15 Minutes Ago</p>-->
+                        </div>
+                        <div class="col-md-10">
+                            <p id="header_ratings">
+                                <g class="float-left"><strong>
+                                    <label for="restaurant">Restaurant Name:</label>
+                                    <input type="text" id="restaurant" name="restaurant" placeholder="Restaurant Name" required><br>
+                                    <label for="name">Name:</label>
+                                    <input type="text" id="name" name="name" placeholder="Your name here" required>
+                                </strong></g>
+
+                                <br>
+
+
+                            </p>
+                            <div class="clearfix"></div>
+                            <label for="star_count">0-5 review: </label>
+                            <input id="star_count" name="star_count" type="number" min="0" max="5" placeholder="0" required><br>
+                            <textarea name="message" rows="10" cols="30" placeholder="Leave Comments Here"></textarea><br>
+
+                            <input type="submit" value="finish review">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+</body>
+{% endblock %}

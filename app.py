@@ -265,7 +265,7 @@ def signup():
 @app.route('/api')
 def api():
     print("test")
-    url = "http://pieceofthepi.pusdcoders.tk/Food/" + str(random.randint(1,7))
+    url = "https://pieceofthepi.nighthawkcodingsociety.com/Food/" + str(random.randint(1,7))
     print(url)
     response = requests.request("GET", url)
     print(response)
@@ -342,6 +342,47 @@ def apiPullUsers():
     users = convertList(users)
     return jsonify(users)
 
+@app.route('/api_form_POST', methods=["GET", "POST"])
+def api_form_POST():
+    if request.method == 'POST':
+        # getting the information from the form
+        restaurant = request.form.get('restaurant')
+        name = request.form.get('name')
+        star_count = request.form.get("star_count")
+        message_input = request.form.get("message")
+
+        # formatting information into the URL use to access the API
+        url_info = 'https://pieceofthepi.nighthawkcodingsociety.com/createReview/' + str(restaurant) + "/" + str(name) + "/peasant/" +str(star_count) + '/'+str(message_input)
+        print(url_info)
+
+        # POST to the API
+        requests.post(url_info)
+
+        # render the default page
+        return render_template('api_form_POST.html')
+
+    return render_template('api_form_POST.html')
+
+
+@app.route('/api_form_GET/<usr>', methods=["GET"])
+def api_form_GET(usr):
+    # compute rows
+    resultproxy = db.engine.execute(
+        text("SELECT * FROM users WHERE username=:username;").execution_options(autocommit=True),
+        username=usr)
+
+    user = convert(resultproxy)
+    if user == False:
+        return apology("invalid username", 403)
+
+    # get the users playlists
+    userTweets = db.engine.execute(
+        text("SELECT * FROM tweet WHERE user=:user;").execution_options(autocommit=True),
+        user=user["id"])
+    userTweets = convertList(userTweets)
+    print(userTweets)
+
+    return jsonify(userTweets)
 
 if __name__ == "__main__":
     # runs the application on the repl development server
