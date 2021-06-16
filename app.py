@@ -167,6 +167,8 @@ def createTweet():
         #db.session.commit()
     #tweets = Tweet.query.all()
     #print(tweets.count)
+    if session.get('logged_in') != True:
+        return redirect("/login")
     if request.method == "POST":
         db.engine.execute(
             text("INSERT INTO tweet (tweetContent, user) VALUES (:tweet, :user);").execution_options(autocommit=True),
@@ -308,8 +310,12 @@ def userProfile(usr):
 
     # find out if it is the current user
     currentUser = False
-    if user["id"] == session["user_id"]:
-        currentUser = True
+    if session.get('logged_in') != True:
+        print("anonymous")
+    else:
+        if user["id"] == session["user_id"]:
+            currentUser = True
+
 
     return render_template("profile.html", user=user, tweets=userTweets, currentUser=currentUser)
 
@@ -329,6 +335,14 @@ def search_results():
         error = "Invalid Input. Please try again."
     #return redirect(url_for('landing_page'))
     return render_template("searchresults.html", error=error)
+
+@app.route('/browse', methods=["GET"])
+def browse():
+    userTweets = db.engine.execute(text("SELECT * FROM tweet").execution_options(autocommit=True))
+    userTweets = convertList(userTweets)
+    users = db.engine.execute(text("SELECT * FROM users").execution_options(autocommit=True))
+    users = convertList(users)
+    return render_template("browse.html", tweets=userTweets, users=users)
 
 @app.route('/apipull/tweets', methods=["GET", "POST"])
 def apiPullTweets():
@@ -383,6 +397,15 @@ def api_form_GET(usr):
     print(userTweets)
 
     return jsonify(userTweets)
+
+@app.route('/createTweetAPI/<user>/<content>', methods=["GET"])
+def createTweetAPI(user, content):
+    db.engine.execute(
+        text("INSERT INTO tweet (tweetContent, user) VALUES (:tweet, :user);").execution_options(autocommit=True),
+        tweet=content,
+        user=user
+    )
+    return jsonify([user, content])
 
 if __name__ == "__main__":
     # runs the application on the repl development server
