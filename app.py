@@ -21,7 +21,6 @@ from templates.minilabs.nivu.nivu import nivu
 from templates.minilabs.akhil.akhil import akhil
 from templates.minilabs.noya.noya import noya
 
-
 app = Flask(__name__)
 
 # register the blueprints
@@ -35,10 +34,10 @@ app.register_blueprint(noya)
 dbURI = 'sqlite:///models/DBreal.db'
 
 ''' database setup  '''
-#project_dir = os.path.dirname(os.path.abspath(__file__))
-#database_file = "sqlite:///{}".format(os.path.join(project_dir, "searching.db"))
-#app = Flask(__name__)
-#app.config["SQLALCHEMY_DATABASE_URI"] = database_file
+# project_dir = os.path.dirname(os.path.abspath(__file__))
+# database_file = "sqlite:///{}".format(os.path.join(project_dir, "searching.db"))
+# app = Flask(__name__)
+# app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -48,13 +47,15 @@ db = SQLAlchemy(app)
 '''app secret key'''
 app.secret_key = 'nighthawks'
 
-class Search(db.Model):
-     searchid = db.Column(db.Integer, primary_key=True, autoincrement=True)
-     menuitem = db.Column(db.String(255), unique=False, nullable=False)
-     link = db.Column(db.String(255), unique=False, nullable=False)
 
-     def __repr__(self):
-         return '<Search %r>' % self.searchid
+class Search(db.Model):
+    searchid = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    menuitem = db.Column(db.String(255), unique=False, nullable=False)
+    link = db.Column(db.String(255), unique=False, nullable=False)
+
+    def __repr__(self):
+        return '<Search %r>' % self.searchid
+
 
 db.create_all()
 
@@ -77,10 +78,12 @@ db.session.add(search5)
 db.session.add(search6)
 db.session.commit()
 
+
 # create database for tweet display
 @app.route('/')
 def index():
     return render_template("home.html")
+
 
 from sqlite3 import Error
 
@@ -159,15 +162,15 @@ def tweets(args):
 
 @app.route('/createTweet', methods=["GET", "POST"])
 def createTweet():
-    #tweets = None
-    #if request.form:
-        #postdata = Tweet(tweetid=request.form.get("tweetid"), tweet=request.form.get("tweet"),
-                    #username=request.form.get("username"))
-        #db.session.add(postdata)
-        #db.session.commit()
-    #tweets = Tweet.query.all()
-    #print(tweets.count)
-    if session.get('logged_in') != True:
+    # tweets = None
+    # if request.form:
+    # postdata = Tweet(tweetid=request.form.get("tweetid"), tweet=request.form.get("tweet"),
+    # username=request.form.get("username"))
+    # db.session.add(postdata)
+    # db.session.commit()
+    # tweets = Tweet.query.all()
+    # print(tweets.count)
+    if session.get("user_id") == None:
         return redirect("/login")
     if request.method == "POST":
         db.engine.execute(
@@ -176,7 +179,7 @@ def createTweet():
             user=session["user_id"]
         )
 
-        resultproxy = db.engine.execute (
+        resultproxy = db.engine.execute(
             text("SELECT * FROM users WHERE id=:id;").execution_options(autocommit=True),
             id=session["user_id"]
         )
@@ -185,9 +188,11 @@ def createTweet():
     else:
         return render_template("createTweet.html", tweets=tweets)
 
+
 @app.route('/liked', methods=['POST', 'GET'])
 def liked():
     return render_template("liked.html")
+
 
 @app.route('/newuser/', methods=["GET", "POST"])
 def new_user():
@@ -219,6 +224,7 @@ def new_user():
         return redirect("/login")
     else:
         return render_template("signup.html")
+
 
 @app.route('/editProfile', methods=["GET", "POST"])
 def editProfile():
@@ -252,6 +258,7 @@ def login():
         # set the user id
         session.clear()
         session["user_id"] = user["id"]
+        print(session)
 
         # redirects us to the user page
         return redirect(url_for("userProfile", usr=user["username"]))
@@ -267,12 +274,13 @@ def signup():
 @app.route('/api')
 def api():
     print("test")
-    url = "https://pieceofthepi.nighthawkcodingsociety.com/Food/" + str(random.randint(1,7))
+    url = "https://pieceofthepi.nighthawkcodingsociety.com/Food/" + str(random.randint(1, 7))
     print(url)
     response = requests.request("GET", url)
     print(response)
     formatted = json.loads(response.text)
     return render_template("pizza.html", pizza=formatted)
+
 
 @app.route("/profile")
 def redirectProfile():
@@ -284,6 +292,7 @@ def redirectProfile():
         return redirect(url_for("userProfile", usr=user["username"]))
     except:
         return redirect('/login')
+
 
 @app.route("/profile/<usr>")
 def userProfile(usr):
@@ -310,12 +319,11 @@ def userProfile(usr):
 
     # find out if it is the current user
     currentUser = False
-    if session.get('logged_in') != True:
+    if session.get("user_id") == None:
         print("anonymous")
     else:
         if user["id"] == session["user_id"]:
             currentUser = True
-
 
     return render_template("profile.html", user=user, tweets=userTweets, currentUser=currentUser)
 
@@ -330,11 +338,12 @@ def search_results():
         print(searchkey)
         selectedsearch = Search.query.filter_by(menuitem=searchkey).first()
         return render_template("searchresults.html", data=selectedsearch)
-        #error=selectedsearch
+        # error=selectedsearch
     else:
         error = "Invalid Input. Please try again."
-    #return redirect(url_for('landing_page'))
+    # return redirect(url_for('landing_page'))
     return render_template("searchresults.html", error=error)
+
 
 @app.route('/browse', methods=["GET"])
 def browse():
@@ -344,17 +353,20 @@ def browse():
     users = convertList(users)
     return render_template("browse.html", tweets=userTweets, users=users)
 
+
 @app.route('/apipull/tweets', methods=["GET", "POST"])
 def apiPullTweets():
     userTweets = db.engine.execute(text("SELECT * FROM tweet").execution_options(autocommit=True))
     userTweets = convertList(userTweets)
     return jsonify(userTweets)
 
+
 @app.route('/apipull/users', methods=["GET", "POST"])
 def apiPullUsers():
     users = db.engine.execute(text("SELECT * FROM users").execution_options(autocommit=True))
     users = convertList(users)
     return jsonify(users)
+
 
 @app.route('/api_form_POST', methods=["GET", "POST"])
 def api_form_POST():
@@ -366,7 +378,8 @@ def api_form_POST():
         message_input = request.form.get("message")
 
         # formatting information into the URL use to access the API
-        url_info = 'https://pieceofthepi.nighthawkcodingsociety.com/createReview/' + str(restaurant) + "/" + str(name) + "/peasant/" +str(star_count) + '/'+str(message_input)
+        url_info = 'https://pieceofthepi.nighthawkcodingsociety.com/createReview/' + str(restaurant) + "/" + str(
+            name) + "/peasant/" + str(star_count) + '/' + str(message_input)
         print(url_info)
 
         # POST to the API
@@ -398,6 +411,7 @@ def api_form_GET(usr):
 
     return jsonify(userTweets)
 
+
 @app.route('/createTweetAPI/<user>/<content>', methods=["GET"])
 def createTweetAPI(user, content):
     db.engine.execute(
@@ -406,6 +420,7 @@ def createTweetAPI(user, content):
         user=user
     )
     return jsonify([user, content])
+
 
 if __name__ == "__main__":
     # runs the application on the repl development server
