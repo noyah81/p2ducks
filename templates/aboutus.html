@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <style>
+        .whitesection {
+            padding: 50px;
+            margin-to:50px;
+            margin-bottom:150px;
+            width:75%
+            margin-left:auto;
+            margin-right:auto;
+            text-align:center;
+        }
+
+        .selectionSection{
+            border-radius:20px;
+            margin:20px;
+            padding:50px;
+            background-color: #d5e2ed;
+        }
+        h2{
+            font-size:30px;
+        }
+
+        .iconImage {
+            width:60px;
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+        h1 {
+            font-size:48px;
+        }
+
+        .marginMid {
+            margin-top:80px;
+        }
+    </style>
+</head>
+<div style="padding:150px;">
+
+    <h1>How it was made</h1>
+    <p>Hawkers is a labor of love from the members of the p2ducks: Akhil, Maggie, Nivu, Noya, and Sarah</p>
+    <h2 style="margin-top:50px;">So.... what are the steps that led to our site's amazingness?</h2>
+    <div class="whitesection" style="display:grid;grid-template-columns: 1fr 1fr 1fr;">
+        <div class="selectionSection">
+            <h4>Teamwork</h4>
+            <img class="iconImage" src="/static/assets/teamwork.png">
+        </div>
+        <div class="selectionSection">
+            <h4>Organization</h4>
+            <img class="iconImage" src="/static/assets/organization.png">
+
+        </div>
+        <div class="selectionSection">
+            <h4>And...Code</h4>
+            <img class="iconImage" src="/static/assets/code.png">
+        </div>
+    </div>
+
+    <div class="whitesection">
+        <h1>Teamwork</h1>
+        <h2>Scrum Board</h2>
+        <p>We used our scrum board to keep track of all of our tasks and ensure everything was split evenly.
+            We also used this board to leave verify and leave comments on our teammates work.
+        </p>
+        <p>
+            <a href="https://github.com/noyah81/p2ducks/projects/1">
+                Scrum Board Link!
+            </a>
+        </p>
+
+        <h2 class="marginMid">Team Self Grade Review</h2>
+        <p>This is how we determined grades. We all got on call together and talked through our contributions and decided on grades.
+            It's a reflection on our collaboration and hard work through the trimester.
+        </p>
+
+        <iframe src="https://docs.google.com/document/d/e/2PACX-1vQA5NaGCLCb5wdTFAlQd_uBxFkO1WXZuerUgqWclM72eCs-0OlJO9MKzGsTkfEjBcqUYWyiwPUBPcrV/pub?embedded=true" width="80%" height="500"></iframe>
+
+    </div>
+
+    <div class="whitesection">
+        <h1>Organization</h1>
+        <h2>README</h2>
+        <p>We used our readme to organize our thoughts and detail our features. It's shown below: </p>
+        <div class="basic" style="text-align:left;">
+
+
+            <h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="P2_Ducks_Project_0"></a>P2 Ducks Project</h1>
+            <p class="has-line-data" data-line-start="2" data-line-end="3"><img src="static/assets/twitter.jpeg" alt="twitter wallpaper"></p>
+            <p class="has-line-data" data-line-start="4" data-line-end="7">Welcome to p2-ducks!<br>
+                Sarah Xie, Maggie Killada, Akhil Genneri, Nivu Rethnakar, Noya Hafiz<br>
+                Period 2</p>
+            <p class="has-line-data" data-line-start="8" data-line-end="9">Runtime Link: <a href=" https://hawkers.nighthawkcodingsociety.com/ ">here</a></p>
+            <p class="has-line-data" data-line-start="10" data-line-end="11">Scrum Board: <a href="https://github.com/noyah81/p2ducks/projects/1">here</a></p>
+            <p class="has-line-data" data-line-start="12" data-line-end="13">Project Plan: <a href="https://docs.google.com/document/d/116Wt0SjYg3Qs0tVatOE36yF8bYnRhermPScTxo2H6Kc/edit?usp=sharing">here</a></p>
+            <h2 class="code-line" data-line-start=14 data-line-end=15 ><a id="Project_Summary_14"></a>Project Summary</h2>
+            <p class="has-line-data" data-line-start="15" data-line-end="16">Hawkers is a rising social media platform created to be a Twitter-esque form of media for students and faculty at Del Norte High School. Users will have the ability to create profiles, tweets, and personalize their individual pages. They can view other user’s tweets - or search for them - and interact by liking posts.</p>
+            <h2 class="code-line" data-line-start=17 data-line-end=18 ><a id="Main_Features_17"></a>Main Features:</h2>
+            <ul>
+                <li class="has-line-data" data-line-start="19" data-line-end="20">Navbar w/ searchbar</li>
+                <li class="has-line-data" data-line-start="20" data-line-end="21">Create and share tweets using an account</li>
+                <li class="has-line-data" data-line-start="21" data-line-end="22">Edit your profile</li>
+                <li class="has-line-data" data-line-start="22" data-line-end="23">Retweet, following others, liking posts</li>
+                <li class="has-line-data" data-line-start="23" data-line-end="25">Create an account</li>
+            </ul>
+            <h3 class="code-line" data-line-start=25 data-line-end=26 ><a id="Main_Umbrella_Features_25"></a>Main Umbrella Features</h3>
+            <ul>
+                <li class="has-line-data" data-line-start="26" data-line-end="27">Signup: User can create an account with specified parameters (password length, unique username)</li>
+                <li class="has-line-data" data-line-start="27" data-line-end="28">Login:  Allows user to access previous tweets/data, sign-up details will be saved and user will be able to easily login</li>
+                <li class="has-line-data" data-line-start="28" data-line-end="29">Tweeting: The user can create text posts - these posts can be seen by other users</li>
+                <li class="has-line-data" data-line-start="29" data-line-end="31">API Integration with P2-Waves</li>
+            </ul>
+            <h3 class="code-line" data-line-start=31 data-line-end=32 ><a id="Tri3_Minilab_31"></a>Tri3 Minilab</h3>
+            <h5 class="code-line" data-line-start=32 data-line-end=33 ><a id="All_minilabs_can_be_found_in_a_subsection_under_templates_The_individual_repositories_linked_below_are_for_code_testing_and_revisions_before_finalizing_commits_to_the_scrum_repository_32"></a>All mini-labs can be found in a subsection under templates. The individual repositories linked below are for code testing and revisions before finalizing commits to the scrum repository.</h5>
+            <h5 class="code-line" data-line-start=33 data-line-end=34 ><a id="Nivu_Rethnakarhttpsgithubcomnivupainivu_minilab_33"></a><a href="https://github.com/nivupai/nivu_minilab">Nivu Rethnakar</a></h5>
+            <h5 class="code-line" data-line-start=34 data-line-end=35 ><a id="Maggie_Killadahttpsgithubcommaggie3000helloworld_34"></a><a href="https://github.com/maggie3000/helloworld">Maggie Killada</a></h5>
+            <h5 class="code-line" data-line-start=35 data-line-end=36 ><a id="Noya_Hafizhttpsgithubcomnoyah81noyaminilab_35"></a><a href="https://github.com/noyah81/noyaminilab">Noya Hafiz</a></h5>
+            <h5 class="code-line" data-line-start=36 data-line-end=37 ><a id="Akhilesh_GennerihttpsgithubcomAkhileshLGminilab1_36"></a><a href="https://github.com/AkhileshLG/minilab1">Akhilesh Genneri</a></h5>
+            <h5 class="code-line" data-line-start=37 data-line-end=38 ><a id="Sarah_Xiehttpsgithubcomsarahwxieminilab_37"></a><a href="https://github.com/sarahwxie/minilab">Sarah Xie</a></h5>
+            <h2 class="code-line" data-line-start=41 data-line-end=42 ><a id="Blueprinting_41"></a>Blueprinting</h2>
+            <p class="has-line-data" data-line-start="43" data-line-end="44"><img src="static/assets/blueprint.jpg" style="width:60%;" alt="blueprint"></p>
+            <p class="has-line-data" data-line-start="45" data-line-end="46">All members of our group created the blueprints together (sharescreen via zoom). Each blueprint page represents a page that will be on our finished site, with a description of the feature, and the group member that has been assigned to the task.</p>
+            <h2 class="code-line" data-line-start=47 data-line-end=48 ><a id="Scrum_Board_47"></a>Scrum Board</h2>
+            <p class="has-line-data" data-line-start="48" data-line-end="49">All members are assigned to at least one “in progress” task, and one “backlog” task in accordance with our project plan.</p>
+            <p class="has-line-data" data-line-start="50" data-line-end="51"><img src="static/assets/backlog.JPG" alt="scrum board"></p>
+        </div>
+        <h2 class="marginMid">Project Document</h2>
+        <p>This Project document outlined all the features we wanted to complete while working on this project.
+            We referred back to this document at the beginning of weeks to make sure that the tasks we were doing were relevant features.
+        </p>
+        <iframe src="https://docs.google.com/document/d/e/2PACX-1vTQ2a2Hds06GUqmiNWyoc67qNzrHNZVkj0sNPKq0UvRMEpeoREZoIqhXyagSITFAnz6qA58cJiRZCLa/pub?embedded=true" width="80%" height="500"></iframe>
+
+    </div>
+    <div class="whitesection">
+        <h1>And....Code</h1>
+        <h2 class="marginMid">Deployment</h2>
+            <p>We deployed using RealVNC using the described setup, and updating with these commands:</p>
+            <code>
+                git pull
+                source p2ducks/bin/activate
+                sudo systemctl restart ducksite.service
+            </code>
+        <h2 class="marginMid">Theme (Features)</h2>
+            <p>We've coded many feautures to create a working social media site. Here are the main ones</p>
+            <div class="basic" style="text-align:left;">
+                <ul>
+                    <li>A Working twitter-themed social media site</li>
+                    <li>Working signup/login</li>
+                    <li>Homepage</li>
+                    <li>Profile page with customization</li>
+                    <li>A pop up that connects to their site</li>
+                    <li>Browse other people's tweets and view their profiles</li>
+                    <li>Sessions to keep track of logins</li>
+                    <li>Working search bar</li>
+                    <li>Creating tweets, allowing anonymous user in the case of no logins</li>
+                    <li>Integration of Wave's REST API, we can alter and view their database through our site</li>
+                    <li>Creation of our REST API, they can alter and view our database through their site.</li>
+                    <li>Working navbar</li>
+                    <li>Separated blueprints sections for our minilap</li>
+                </ul>
+            </div>
+        <h2 class="marginMid">API</h2>
+        <p>You can EDIT and VIEW access data from BOTH sites using our API's. </p>
+        <p> Click
+            <strong><a href="/api">here</a></strong> to see our API's working in all their glory.
+        </p>
+    </div>
+</div>
+
+{% endblock %}

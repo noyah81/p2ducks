@@ -1,47 +1,45 @@
 <nav class="navbar navbar-light navbar-expand-md" id="navbartop" style="background-color:#d5e2ed; padding:20px;">
-    <div class="container-fluid"><a class="navbar-brand" href="/"><strong>Hawkers</strong></a>
+    <div class="container-fluid" style="width:40%;"><a class="navbar-brand" href="/"><strong>Hawkers</strong></a>
         <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon"></span>
         </button>
         </div>
 
-            <div class="search-container">
-                <form action="/search_results" method="POST">
+            <div class="search-container" style="margin-right:120px;">
+                <form action="/search_results" method="POST" style="border:none; background-color:#d5e2ed">
                     <input type="text" placeholder="search" name="search">
                 </form>
             </div>
 
-        <div>
-            <ul class="nav navbar-nav">
-                <div class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Tour</a>
-                    <div class="dropdown-menu">
-                        <a class="nav-link active" href="/signup"><strong>Signup</strong></a>
-                        <a class="nav-link active" href="/login"><strong>Login</strong></a>
-                        <a class="nav-link active" href="/profile"><strong>Profile</strong></a>
-                        <a class="nav-link active" href="/createTweet"><strong>Start Tweeting!</strong></a>
-                        <a class="nav-link active" href="/browse"><strong>Browse Tweets!</strong></a>
-                        <a class="nav-link active" href="/share"><strong>Share on other platforms!</strong></a>
-                    </div>
-
-                </div>
-            <div>
-                <li class="nav-item"><a class="nav-link active" href="/api"><strong>API Integration</strong></a></li></div>
-
-            <div class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown">Labs</a>
+        <ul class="nav navbar-nav" style="margin-right:20px;">
+            <div class="dropdown" style="margin-right:20px;">
+                <a class="dropdown-toggle" data-toggle="dropdown">Tour</a>
                 <div class="dropdown-menu">
-                    <a href="/nivu/minilab-nivu" class="dropdown-item">Nivu Minilab</a>
-                    <a href="/nivu/bubble-sort-nivu" class="dropdown-item">Nivu Bubble Sort</a>
-                    <a href="/sarah/playlists" class="dropdown-item">Sarah Minilab</a>
-                    <a href="/maggie/minilab-maggie" class="dropdown-item">Maggie Minilab</a>
-                    <a href="/akhil/minilab-akhil" class="dropdown-item">Akhilesh Minilab</a>
-                    <a href="/noya/factorial" class="dropdown-item">Noya Minilab</a>
+                    <a class="nav-link active" href="/signup"><strong>Signup</strong></a>
+                    <a class="nav-link active" href="/login"><strong>Login</strong></a>
+                    <a class="nav-link active" href="/profile"><strong>Profile</strong></a>
+                    <a class="nav-link active" href="/createTweet"><strong>Start Tweeting!</strong></a>
+                    <a class="nav-link active" href="/browse"><strong>Browse Tweets!</strong></a>
+                    <a class="nav-link active" href="/share"><strong>Share on other platforms!</strong></a>
                 </div>
 
             </div>
-            </ul>
+            <li class="nav-item" style="margin-right:20px;"><a class="nav-link active" href="/api"><strong>API Integration</strong></a></li>
+            <li class="nav-item" style="margin-right:20px;"><a class="nav-link active" href="/aboutus"><strong>How it was made</strong></a></li>
 
-    </div>
+        <div class="dropdown" style="margin-right:20px;">
+            <a class="dropdown-toggle" data-toggle="dropdown">Labs</a>
+            <div class="dropdown-menu">
+                <a href="/nivu/minilab-nivu" class="dropdown-item">Nivu Minilab</a>
+                <a href="/nivu/bubble-sort-nivu" class="dropdown-item">Nivu Bubble Sort</a>
+                <a href="/sarah/playlists" class="dropdown-item">Sarah Minilab</a>
+                <a href="/maggie/minilab-maggie" class="dropdown-item">Maggie Minilab</a>
+                <a href="/akhil/minilab-akhil" class="dropdown-item">Akhilesh Minilab</a>
+                <a href="/noya/factorial" class="dropdown-item">Noya Minilab</a>
+            </div>
+
+        </div>
+        </ul>
+
 </nav>
