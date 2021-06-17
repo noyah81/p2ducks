@@ -8,7 +8,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from custom import apology, convert, convertList
 from sqlite3 import Error
 import random
-import requests
+#import requests
 import json
 import os
 from sqlite3 import Error
@@ -16,7 +16,7 @@ from sqlite3 import Error
 
 # import from blueprints
 from templates.minilabs.sarah.sarah import sarah
-from templates.minilabs.maggie.maggie import maggie
+#from templates.minilabs.maggie.maggie import maggie
 from templates.minilabs.nivu.nivu import nivu
 from templates.minilabs.akhil.akhil import akhil
 from templates.minilabs.noya.noya import noya
@@ -25,7 +25,7 @@ app = Flask(__name__)
 
 # register the blueprints
 app.register_blueprint(sarah)
-app.register_blueprint(maggie)
+#app.register_blueprint(maggie)
 app.register_blueprint(nivu)
 app.register_blueprint(akhil)
 app.register_blueprint(noya)
@@ -171,7 +171,7 @@ def createTweet():
     # tweets = Tweet.query.all()
     # print(tweets.count)
     if session.get("user_id") == None:
-        return redirect("/login")
+        return render_template("createTweet.html", tweets=tweets)
     if request.method == "POST":
         db.engine.execute(
             text("INSERT INTO tweet (tweetContent, user) VALUES (:tweet, :user);").execution_options(autocommit=True),
